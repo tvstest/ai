@@ -34,6 +34,32 @@ export interface ISetErrorAction {
   payload: { message: string };
 }
 
+// action creators
+export const loadRandomAsteroidId = (): ILoadRandomAsteroidIdAction => ({
+  type: ActionType.LoadingRandomAsteroidId,
+});
+
+export const loadRandomAsteroidData = (): ILoadAsteroidDataAction => ({
+  type: ActionType.LoadingAsteroidData,
+});
+
+export const setAsteroidId = (asteroidId: string): ISetAsteroidIdAction => ({
+  type: ActionType.SetAsteroidId,
+  payload: { asteroidId },
+});
+
+export const setAsteroidData = (
+  data: IRandomAsteroidData
+): ISetAsteroidDataAction => ({
+  type: ActionType.SetAsteroidData,
+  payload: data,
+});
+
+export const setError = (message: string): ISetErrorAction => ({
+  type: ActionType.SetError,
+  payload: { message },
+});
+
 export type AsteroidContextActions =
   | ILoadRandomAsteroidIdAction
   | ILoadAsteroidDataAction

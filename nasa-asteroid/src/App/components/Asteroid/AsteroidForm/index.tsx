@@ -5,7 +5,13 @@ import { Button, CircularProgress, Grid, TextField } from "@material-ui/core";
 import { useCallback } from "react";
 import _ from "lodash";
 import { useAsteroidContext } from "app/context/AsteroidContext";
-import { ActionType } from "app/context/AsteroidContext/actions";
+import {
+  loadRandomAsteroidData,
+  loadRandomAsteroidId,
+  setAsteroidData,
+  setAsteroidId,
+  setError,
+} from "app/context/AsteroidContext/actions";
 import asteroidServices from "app/services/asteroid-services";
 import { IAsteroidForm } from "app/utility/interfaces/asteroid";
 const schema = Yup.object().shape({
@@ -36,30 +42,19 @@ const AsteroidForm: React.FC = () => {
 
   const onSubmit = useCallback(
     async (formData: IAsteroidForm) => {
-      dispatch({
-        type: ActionType.SetAsteroidId,
-        payload: { asteroidId: formData?.asteroidId || "" },
-      });
+      dispatch(setAsteroidId(formData?.asteroidId || ""));
 
-      dispatch({
-        type: ActionType.LoadingAsteroidData,
-      });
+      dispatch(loadRandomAsteroidData());
 
       try {
         const { data } = await asteroidServices.getAsteroidById(
           formData?.asteroidId || ""
         );
-        dispatch({
-          type: ActionType.SetAsteroidData,
-          payload: data,
-        });
+        dispatch(setAsteroidData(data));
       } catch (err) {
-        dispatch({
-          type: ActionType.SetError,
-          payload: {
-            message: `Failed to load given asteroid id ${formData?.asteroidId}`,
-          },
-        });
+        dispatch(
+          setError(`Failed to load given asteroid id ${formData?.asteroidId}`)
+        );
       }
 
       reset();
@@ -68,30 +63,22 @@ const AsteroidForm: React.FC = () => {
   );
 
   const getRandomAsteroid = useCallback(async () => {
-    dispatch({ type: ActionType.LoadingRandomAsteroidId });
+    dispatch(loadRandomAsteroidId());
 
     const {
       data: { near_earth_objects },
     } = await asteroidServices.getRandomAsteroidId();
     const randomAsteroidData = _.sample(near_earth_objects);
 
-    dispatch({
-      type: ActionType.SetAsteroidId,
-      payload: { asteroidId: randomAsteroidData?.id || "" },
-    });
+    dispatch(setAsteroidId(randomAsteroidData?.id || ""));
 
-    dispatch({
-      type: ActionType.LoadingAsteroidData,
-    });
+    dispatch(loadRandomAsteroidData());
 
     const { data } = await asteroidServices.getAsteroidById(
       randomAsteroidData?.id || ""
     );
 
-    dispatch({
-      type: ActionType.SetAsteroidData,
-      payload: data,
-    });
+    dispatch(setAsteroidData(data));
   }, [dispatch]);
 
   return (
