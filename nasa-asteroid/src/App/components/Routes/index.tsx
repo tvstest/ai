@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Route, RouteProps, Switch } from "react-router-dom";
-import { AppRoutings } from "../../utility/enums/app-routiings";
+import { AppRoutings } from "App/utility/enums/app-routings";
 
 const routes: Array<RouteProps> = [
   {

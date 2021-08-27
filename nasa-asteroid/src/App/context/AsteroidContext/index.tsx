@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
-import { IRandomAsteroidData } from "../../utility/interfaces/asteroid";
+import { IRandomAsteroidData } from "App/utility/interfaces/asteroid";
 import { ActionType, AsteroidContextActions } from "./actions";
 
 interface IState {

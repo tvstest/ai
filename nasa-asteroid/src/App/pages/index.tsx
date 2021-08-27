@@ -1,7 +1,7 @@
 import { Container, makeStyles } from "@material-ui/core";
-import AsteroidDetails from "../components/AsteroidDetails";
-import AsteroidForm from "../components/AsteroidForm";
-import AsteroidContextWrapper from "../context/AsteroidContext";
+import AsteroidDetails from "App/components/AsteroidDetails";
+import AsteroidForm from "App/components/AsteroidForm";
+import AsteroidContextWrapper from "App/context/AsteroidContext";
 
 const useStyles = makeStyles({
   topMargin: {

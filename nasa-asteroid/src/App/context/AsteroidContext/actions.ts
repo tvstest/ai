@@ -1,7 +1,7 @@
 import {
   IAsteroidForm,
   IRandomAsteroidData,
-} from "../../utility/interfaces/asteroid";
+} from "App/utility/interfaces/asteroid";
 
 export enum ActionType {
   LoadingRandomAsteroidId,

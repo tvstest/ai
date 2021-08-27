@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@material-ui/core";
+import Navbar from "App/components/Navbar";
+import Routes from "App/components/Routes";
 import { Suspense } from "react";
-import Navbar from "./components/Navbar";
-import Routes from "./components/Routes";
 import theme from "./theme";
 
 const App: React.FC = () => {

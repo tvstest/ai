@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
+import { NASA_API_KEY_PREFIX } from "App/constants";
 import { AxiosResponse } from "axios";
-import { NASA_API_KEY_PREFIX } from "../constants";
 import {
   IRandomAsteroidData,
   IRandomAsteroidDatResponse,
