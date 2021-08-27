@@ -1,10 +1,10 @@
 import { lazy } from "react";
 import { Route, RouteProps, Switch } from "react-router-dom";
-import { AppRoutings } from "App/utility/enums/app-routings";
+import { AppRoutings } from "app/utility/enums/app-routings";
 
 const routes: Array<RouteProps> = [
   {
-    component: lazy(() => import("../../pages")),
+    component: lazy(() => import("app/pages/Home")),
     path: AppRoutings.Home,
     exact: true,
   },
@@ -13,8 +13,13 @@ const routes: Array<RouteProps> = [
 const Routes = () => {
   return (
     <Switch>
-      {routes.map((route, routeIndex) => (
-        <Route key={routeIndex} {...route} />
+      {routes.map(({ component, exact, path }, routeIndex) => (
+        <Route
+          key={routeIndex}
+          component={component}
+          exact={exact}
+          path={path}
+        />
       ))}
     </Switch>
   );

@@ -4,10 +4,10 @@ import * as Yup from "yup";
 import { Button, CircularProgress, Grid, TextField } from "@material-ui/core";
 import { useCallback } from "react";
 import _ from "lodash";
-import { useAsteroidContext } from "App/context/AsteroidContext";
-import { ActionType } from "App/context/AsteroidContext/actions";
-import asteroidServices from "App/services/asteroid-services";
-import { IAsteroidForm } from "App/utility/interfaces/asteroid";
+import { useAsteroidContext } from "app/context/AsteroidContext";
+import { ActionType } from "app/context/AsteroidContext/actions";
+import asteroidServices from "app/services/asteroid-services";
+import { IAsteroidForm } from "app/utility/interfaces/asteroid";
 const schema = Yup.object().shape({
   asteroidId: Yup.string()
     .trim()

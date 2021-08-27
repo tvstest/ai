@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Alert, Skeleton, AlertTitle } from "@material-ui/lab";
-import { useAsteroidContext } from "App/context/AsteroidContext";
+import { useAsteroidContext } from "app/context/AsteroidContext";
 
 const useStyles = makeStyles({
   root: {
