@@ -9,10 +9,12 @@ import CountrySearchForm from "app/components/Country/CountrySearchForm";
 import CountryList from "app/components/Country/CountryList";
 import Navbar from "app/components/Navbar";
 import { Routes } from "app/utils/enums/routes";
+import { ThemeProvider } from "@material-ui/core";
+import appTheme from "app/theme";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <ThemeProvider theme={appTheme}>
       <Router>
         <Navbar />
         <Switch>
@@ -21,7 +23,7 @@ const App: React.FC = () => {
           <Redirect to={Routes.Home} />
         </Switch>
       </Router>
-    </div>
+    </ThemeProvider>
   );
 };
 export default App;

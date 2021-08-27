@@ -31,7 +31,7 @@ const CountrySearchForm: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
   const [countryNameInput, setCountryNameInput] = useState<string>("");
-
+  const countrySearchRoute = `${Routes.Countries}/${countryNameInput}`;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -42,7 +42,7 @@ const CountrySearchForm: React.FC = () => {
           autoComplete="off"
           onSubmit={(e) => {
             e.preventDefault();
-            history.push(`${Routes.Countries}/${countryNameInput}`);
+            history.push(countrySearchRoute);
           }}
         >
           <TextField
@@ -57,7 +57,7 @@ const CountrySearchForm: React.FC = () => {
           <Button
             variant="contained"
             color="primary"
-            disabled={countryNameInput === ""}
+            disabled={!Boolean(countryNameInput)}
             type="submit"
             fullWidth
             className={classes.submit}

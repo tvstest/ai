@@ -1,6 +1,11 @@
 import { ICountry } from "app/utils/interfaces/country";
 import { AxiosResponse } from "axios";
-import { countryHttpClient } from "app/services/http.service";
+import httpClient from "app/services/http-service";
+import { COUNTRIES_API_BASE_URL } from "app/configs";
+
+const countryHttpClient = httpClient.create({
+  baseURL: COUNTRIES_API_BASE_URL,
+});
 
 const getAll = (): Promise<AxiosResponse<ICountry[]>> =>
   countryHttpClient.get(`/all`);
