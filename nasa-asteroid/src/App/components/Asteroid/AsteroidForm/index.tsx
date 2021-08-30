@@ -29,6 +29,8 @@ const defaultValues: IAsteroidForm = {
 const AsteroidForm: React.FC = () => {
   const { state, dispatch } = useAsteroidContext()
 
+  const loading = state.loadingRandomAsteroidId || state.loadingAsteroidData
+
   const {
     control,
     handleSubmit,
@@ -107,9 +109,7 @@ const AsteroidForm: React.FC = () => {
             type="submit"
             variant="contained"
             color="primary"
-            disabled={
-              state.loadingRandomAsteroidId || state.loadingAsteroidData
-            }
+            disabled={loading}
           >
             Submit
           </Button>
@@ -119,14 +119,8 @@ const AsteroidForm: React.FC = () => {
             variant="contained"
             color="primary"
             onClick={getRandomAsteroid}
-            disabled={
-              state.loadingRandomAsteroidId || state.loadingAsteroidData
-            }
-            startIcon={
-              state.loadingRandomAsteroidId ? (
-                <CircularProgress size={20} />
-              ) : undefined
-            }
+            disabled={loading}
+            startIcon={loading ? <CircularProgress size={20} /> : undefined}
           >
             Get Random Asteroid
           </Button>
