@@ -10,6 +10,8 @@ This project utilizes two APIs provided by NASA :
 - Get Random Asteroid ID 'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{YOUR_API_KEY}}'
 - Get Asteroid Data 'https://api.nasa.gov/neo/rest/v1/neo/{{ASTEROID_ID}}?api_key={{YOUR_API_KEY}}'
 
+#### Visual Insights
+
 Application opens with a form to enter Asteroid ID and a button to get the Random Asteroid Details.
 When form is submitted details of Asteroid as per given ID is shown below. (Utilizes 2nd API)
 
