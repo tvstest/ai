@@ -7,8 +7,8 @@ These APIs are open and requires registration to use it (with provided API_KEY) 
 
 This project utilizes two APIs provided by NASA :
 
-- [Get Random Asteroid ID]('https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{YOUR_API_KEY}}')
-- [Get Asteroid Data]('https://api.nasa.gov/neo/rest/v1/neo/{{ASTEROID_ID}}?api_key={{YOUR_API_KEY}}')
+- [Get Random Asteroid ID] ('https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{YOUR_API_KEY}}')
+- [Get Asteroid Data] ('https://api.nasa.gov/neo/rest/v1/neo/{{ASTEROID_ID}}?api_key={{YOUR_API_KEY}}')
 
 Application opens with a form to enter Asteroid ID and a button to get the Random Asteroid Details.
 When form is submitted details of Asteroid as per given ID is shown below. (Utilizes 2nd API)
@@ -29,20 +29,19 @@ following details are shown :
 
 ### Packages used
 
-| Name                    |     Version      | Purpose                                                  |
-| :---------------------- | :--------------: | :------------------------------------------------------- |
-| @hookform/resolvers     |      2.8.0       | To bind validation schema with react hook form           |
-| @material-ui/core       |      4.12.3      | To style application                                     |
-| @material-ui/icons      |      4.11.2      | To use icons provided by material UI                     |
-| @material-ui/lab        |  4.0.0-alpha.60  | To use extra material UI components                      |
-| axios                   |      0.21.1      | For Data Fetching / HTTP requests                        |
-| react-hook-form         |      7.13.0      | To validate form inputs and events binding               |
-| react-router-dom        |      5.2.0       | For navigation / routing in react app                    |
-| react-toastify          |      8.0.0       | To display toast in application                          |
-| yup                     |      0.32.9      | Schema builder for value parsing and validation          |
-| -------------------     | Dev Dependencies | -------                                                  |
-| @types/react-router-dom |      5.1.8       | for better typescript intellisense                       |
-| prettier                |      2.3.2       | For consistent prettified code across different platform |
+| Name                    |    Version     | Purpose                                                  |
+| :---------------------- | :------------: | :------------------------------------------------------- |
+| @hookform/resolvers     |     2.8.0      | To bind validation schema with react hook form           |
+| @material-ui/core       |     4.12.3     | For styling Application                                  |
+| @material-ui/icons      |     4.11.2     | To display icons provided by material UI                 |
+| @material-ui/lab        | 4.0.0-alpha.60 | Provides extra material UI components                    |
+| @types/react-router-dom |     5.1.8      | For better typescript intellisense                       |
+| axios                   |     0.21.1     | For Data Fetching / HTTP requests                        |
+| prettier                |     2.3.2      | For consistent prettified code across different platform |
+| react-hook-form         |     7.13.0     | To validate form inputs and events binding               |
+| react-router-dom        |     5.2.0      | For navigation / routing in react app                    |
+| react-toastify          |     8.0.0      | To display toast in application                          |
+| yup                     |     0.32.9     | Schema builder for value parsing and validation          |
 
 # Getting Started with Create React App
 
