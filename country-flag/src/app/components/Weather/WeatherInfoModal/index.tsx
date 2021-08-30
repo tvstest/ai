@@ -38,16 +38,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface WeatherInfoModalProps {
+interface IWeatherInfoModalProps {
   open: boolean;
   capitalWeatherInfo: ICapitalWeatherInfo;
   handleClose: () => void;
 }
 
-const WeatherInfoModal: React.FC<WeatherInfoModalProps> = (
-  props: WeatherInfoModalProps
-) => {
-  const { open, handleClose, capitalWeatherInfo } = props;
+const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
+  open,
+  handleClose,
+  capitalWeatherInfo,
+}: IWeatherInfoModalProps) => {
   const classes = useStyles();
   return (
     <Dialog
@@ -66,42 +67,28 @@ const WeatherInfoModal: React.FC<WeatherInfoModalProps> = (
         >
           <CloseIcon />
         </IconButton>
-        {/* <IconButton
-          edge="start"
-          color="inherit"
-          onClick={handleClose}
-          aria-label="close"
-        >
-          <CloseIcon />
-        </IconButton> */}
       </DialogTitle>
       <DialogContent dividers className={classes.centerContent}>
-        <Typography variant="h4">{capitalWeatherInfo.location.name}</Typography>
-        {capitalWeatherInfo.current.weather_icons?.map(
-          (weatherIconUrl: any) => {
-            return (
-              <Avatar
-                variant="rounded"
-                // className={classes.rounded}
-                src={weatherIconUrl}
-              />
-              //   <img src={weatherIcon} key={weatherIcon} alt="weather_icons" />
-            );
-          }
+        <Typography variant="h4">
+          {capitalWeatherInfo?.location?.name}
+        </Typography>
+        {capitalWeatherInfo?.current?.weather_icons?.map(
+          (weatherIconUrl: string) => (
+            <Avatar variant="rounded" src={weatherIconUrl} />
+          )
         )}
         <Typography variant="body1" color="textSecondary">
-          Temperature : {capitalWeatherInfo.current.temperature + "°"}
+          Temperature : {capitalWeatherInfo?.current?.temperature + "°"}
         </Typography>
         <Typography variant="body1" color="textSecondary">
-          Wind Speed : {capitalWeatherInfo.current.wind_speed} km/h
+          Wind Speed : {capitalWeatherInfo?.current?.wind_speed} km/h
         </Typography>
         <Typography variant="body1" color="textSecondary">
-          Precipitation : {capitalWeatherInfo.current.precip} %
+          Precipitation : {capitalWeatherInfo?.current?.precip} %
         </Typography>
       </DialogContent>
       <DialogActions>
         <Button
-          // fullWidth
           variant="contained"
           autoFocus
           onClick={handleClose}
