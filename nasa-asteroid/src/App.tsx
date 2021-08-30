@@ -1,8 +1,8 @@
-import { ThemeProvider } from "@material-ui/core";
-import Navbar from "app/components/Navbar";
-import Routes from "app/components/Routes";
-import { Suspense } from "react";
-import theme from "./app/config/theme";
+import { ThemeProvider } from '@material-ui/core'
+import Navbar from 'app/components/Navbar'
+import Routes from 'app/components/Routes'
+import { Suspense } from 'react'
+import theme from './app/config/theme'
 
 const App: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ const App: React.FC = () => {
         <Routes />
       </ThemeProvider>
     </Suspense>
-  );
-};
+  )
+}
 
-export default App;
+export default App

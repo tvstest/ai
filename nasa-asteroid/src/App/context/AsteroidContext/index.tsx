@@ -1,38 +1,38 @@
-import { useReducer } from "react";
-import { useContext } from "react";
-import { createContext } from "react";
-import { IRandomAsteroidData } from "app/utility/interfaces/asteroid";
-import { ActionType, AsteroidContextActions } from "./actions";
+import { useReducer } from 'react'
+import { useContext } from 'react'
+import { createContext } from 'react'
+import { IRandomAsteroidData } from 'app/utility/interfaces/asteroid'
+import { ActionType, AsteroidContextActions } from './actions'
 
 interface IState {
-  errorMessage: string;
-  loadingRandomAsteroidId: boolean;
-  status: string;
-  asteroidId: string;
-  loadingAsteroidData: boolean;
-  details: IRandomAsteroidData | null;
+  errorMessage: string
+  loadingRandomAsteroidId: boolean
+  status: string
+  asteroidId: string
+  loadingAsteroidData: boolean
+  details: IRandomAsteroidData | null
 }
 
 const defaultState: IState = {
-  errorMessage: "",
+  errorMessage: '',
   details: null,
-  status: "",
-  asteroidId: "",
+  status: '',
+  asteroidId: '',
   loadingAsteroidData: false,
   loadingRandomAsteroidId: false,
-};
+}
 
 export interface IAsteroidContext {
-  state: IState;
-  dispatch: React.Dispatch<AsteroidContextActions>;
+  state: IState
+  dispatch: React.Dispatch<AsteroidContextActions>
 }
 
 const initialContext: IAsteroidContext = {
   state: defaultState,
   dispatch: () => undefined,
-};
+}
 
-export const AsteroidContext = createContext<IAsteroidContext>(initialContext);
+export const AsteroidContext = createContext<IAsteroidContext>(initialContext)
 
 const astroidContextReducer = (
   state: IState,
@@ -45,67 +45,67 @@ const astroidContextReducer = (
         status: `Loading asteroid data of id ${state.asteroidId} ...`,
         asteroidId: state.asteroidId,
         details: null,
-        errorMessage: "",
+        errorMessage: '',
         loadingRandomAsteroidId: false,
-      };
+      }
     case ActionType.LoadingRandomAsteroidId:
       return {
         loadingRandomAsteroidId: true,
-        status: "Loading random asteroid id ...",
-        asteroidId: "",
+        status: 'Loading random asteroid id ...',
+        asteroidId: '',
         details: null,
-        errorMessage: "",
+        errorMessage: '',
         loadingAsteroidData: false,
-      };
+      }
     case ActionType.SetAsteroidId:
       return {
         loadingRandomAsteroidId: false,
-        status: "",
+        status: '',
         asteroidId: action.payload.asteroidId,
         details: null,
-        errorMessage: "",
+        errorMessage: '',
         loadingAsteroidData: false,
-      };
+      }
     case ActionType.SetAsteroidData:
       return {
         loadingRandomAsteroidId: false,
-        status: "",
+        status: '',
         asteroidId: state.asteroidId,
         details: action.payload,
-        errorMessage: "",
+        errorMessage: '',
         loadingAsteroidData: false,
-      };
+      }
     case ActionType.SetError:
       return {
         loadingRandomAsteroidId: false,
-        status: "",
+        status: '',
         asteroidId: state.asteroidId,
         details: null,
         errorMessage: action.payload.message,
         loadingAsteroidData: false,
-      };
+      }
     default:
-      return defaultState;
+      return defaultState
   }
-};
+}
 
 const AsteroidContextWrapper: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(astroidContextReducer, defaultState);
+  const [state, dispatch] = useReducer(astroidContextReducer, defaultState)
   return (
     <AsteroidContext.Provider value={{ state, dispatch }}>
       {children}
     </AsteroidContext.Provider>
-  );
-};
+  )
+}
 
 export const useAsteroidContext = () => {
-  const context = useContext(AsteroidContext);
+  const context = useContext(AsteroidContext)
   if (!context) {
     throw new Error(
-      "This component must be used within a <AsteroidContextWrapper> component."
-    );
+      'This component must be used within a <AsteroidContextWrapper> component.'
+    )
   }
-  return context;
-};
+  return context
+}
 
-export default AsteroidContextWrapper;
+export default AsteroidContextWrapper

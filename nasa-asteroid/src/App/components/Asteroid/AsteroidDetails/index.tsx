@@ -5,9 +5,9 @@ import {
   Link,
   makeStyles,
   Typography,
-} from "@material-ui/core";
-import { Alert, Skeleton, AlertTitle } from "@material-ui/lab";
-import { useAsteroidContext } from "app/context/AsteroidContext";
+} from '@material-ui/core'
+import { Alert, Skeleton, AlertTitle } from '@material-ui/lab'
+import { useAsteroidContext } from 'app/context/AsteroidContext'
 
 const useStyles = makeStyles({
   root: {
@@ -15,11 +15,11 @@ const useStyles = makeStyles({
     minHeight: 150,
     marginTop: 30,
   },
-});
+})
 
 const AsteroidDetails: React.FC = () => {
-  const { root } = useStyles();
-  const { state } = useAsteroidContext();
+  const { root } = useStyles()
+  const { state } = useAsteroidContext()
 
   if (state.status) {
     return (
@@ -37,7 +37,7 @@ const AsteroidDetails: React.FC = () => {
           </CardContent>
         </CardActionArea>
       </Card>
-    );
+    )
   }
 
   if (state.errorMessage) {
@@ -46,7 +46,7 @@ const AsteroidDetails: React.FC = () => {
         <AlertTitle>Error</AlertTitle>
         {state.errorMessage}
       </Alert>
-    );
+    )
   }
 
   return (
@@ -70,15 +70,15 @@ const AsteroidDetails: React.FC = () => {
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 {state.details.is_potentially_hazardous_asteroid
-                  ? "Asteroid is potentially hazardous"
-                  : "Asteroid is most probably harmless"}
+                  ? 'Asteroid is potentially hazardous'
+                  : 'Asteroid is most probably harmless'}
               </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
       )}
     </>
-  );
-};
+  )
+}
 
-export default AsteroidDetails;
+export default AsteroidDetails

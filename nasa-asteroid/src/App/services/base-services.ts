@@ -1,11 +1,11 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { NASA_BASE_URL } from "app/constants";
-import { HttpStatusCodes } from "app/utility/enums/http-status-codes";
-import { toast } from "react-toastify";
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import { NASA_BASE_URL } from 'app/constants'
+import { HttpStatusCodes } from 'app/utility/enums/http-status-codes'
+import { toast } from 'react-toastify'
 
 export const axiosInstance = axios.create({
   baseURL: NASA_BASE_URL,
-});
+})
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
@@ -14,19 +14,19 @@ axiosInstance.interceptors.response.use(
       case HttpStatusCodes.Unauthorized:
       case HttpStatusCodes.BadRequest:
       case HttpStatusCodes.ConflictError:
-        break;
+        break
       case HttpStatusCodes.InternalServerError:
-        if (process.env.NODE_ENV === "development") {
-          toast.error("Internal Server Error");
+        if (process.env.NODE_ENV === 'development') {
+          toast.error('Internal Server Error')
         } else {
-          toast.error("Something went wrong");
+          toast.error('Something went wrong')
         }
-        break;
+        break
       default:
-        break;
+        break
     }
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
-export default axiosInstance;
+export default axiosInstance

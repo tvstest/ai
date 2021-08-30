@@ -1,33 +1,33 @@
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { Button, CircularProgress, Grid, TextField } from "@material-ui/core";
-import { useCallback } from "react";
-import _ from "lodash";
-import { useAsteroidContext } from "app/context/AsteroidContext";
+import { Controller, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
+import { Button, CircularProgress, Grid, TextField } from '@material-ui/core'
+import { useCallback } from 'react'
+import _ from 'lodash'
+import { useAsteroidContext } from 'app/context/AsteroidContext'
 import {
   loadRandomAsteroidData,
   loadRandomAsteroidId,
   setAsteroidData,
   setAsteroidId,
   setError,
-} from "app/context/AsteroidContext/actions";
-import asteroidServices from "app/services/asteroid-services";
-import { IAsteroidForm } from "app/utility/interfaces/asteroid";
+} from 'app/context/AsteroidContext/actions'
+import asteroidServices from 'app/services/asteroid-services'
+import { IAsteroidForm } from 'app/utility/interfaces/asteroid'
 const schema = Yup.object().shape({
   asteroidId: Yup.string()
     .trim()
-    .required("Please enter asteroid id")
-    .matches(/^[0-9]*$/, "Asteroid id must be numeric")
-    .length(7, "please enter 7 digit asteroid id"),
-});
+    .required('Please enter asteroid id')
+    .matches(/^[0-9]*$/, 'Asteroid id must be numeric')
+    .length(7, 'please enter 7 digit asteroid id'),
+})
 
 const defaultValues: IAsteroidForm = {
-  asteroidId: "",
-};
+  asteroidId: '',
+}
 
 const AsteroidForm: React.FC = () => {
-  const { state, dispatch } = useAsteroidContext();
+  const { state, dispatch } = useAsteroidContext()
 
   const {
     control,
@@ -35,51 +35,51 @@ const AsteroidForm: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm<IAsteroidForm>({
-    mode: "all",
+    mode: 'all',
     resolver: yupResolver(schema),
     defaultValues,
-  });
+  })
 
   const onSubmit = useCallback(
     async (formData: IAsteroidForm) => {
-      dispatch(setAsteroidId(formData?.asteroidId || ""));
+      dispatch(setAsteroidId(formData?.asteroidId || ''))
 
-      dispatch(loadRandomAsteroidData());
+      dispatch(loadRandomAsteroidData())
 
       try {
         const { data } = await asteroidServices.getAsteroidById(
-          formData?.asteroidId || ""
-        );
-        dispatch(setAsteroidData(data));
+          formData?.asteroidId || ''
+        )
+        dispatch(setAsteroidData(data))
       } catch (err) {
         dispatch(
           setError(`Failed to load given asteroid id ${formData?.asteroidId}`)
-        );
+        )
       }
 
-      reset();
+      reset()
     },
     [dispatch, reset]
-  );
+  )
 
   const getRandomAsteroid = useCallback(async () => {
-    dispatch(loadRandomAsteroidId());
+    dispatch(loadRandomAsteroidId())
 
     const {
       data: { near_earth_objects },
-    } = await asteroidServices.getRandomAsteroidId();
-    const randomAsteroidData = _.sample(near_earth_objects);
+    } = await asteroidServices.getRandomAsteroidId()
+    const randomAsteroidData = _.sample(near_earth_objects)
 
-    dispatch(setAsteroidId(randomAsteroidData?.id || ""));
+    dispatch(setAsteroidId(randomAsteroidData?.id || ''))
 
-    dispatch(loadRandomAsteroidData());
+    dispatch(loadRandomAsteroidData())
 
     const { data } = await asteroidServices.getAsteroidById(
-      randomAsteroidData?.id || ""
-    );
+      randomAsteroidData?.id || ''
+    )
 
-    dispatch(setAsteroidData(data));
-  }, [dispatch]);
+    dispatch(setAsteroidData(data))
+  }, [dispatch])
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -133,7 +133,7 @@ const AsteroidForm: React.FC = () => {
         </Grid>
       </Grid>
     </form>
-  );
-};
+  )
+}
 
-export default AsteroidForm;
+export default AsteroidForm
