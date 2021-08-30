@@ -1,3 +1,49 @@
+# What this project is about ?
+
+The NASA (National Aeronautics and Space Administration) is an independent agency of the U.S. federal government responsible for the civilian space program, as well as aeronautics and space research. [Wikipedia](https://en.wikipedia.org/wiki/NASA)
+
+NASA offers various APIs for exploring large data of space and making it available to the application developers.
+These APIs are open and requires registration to use it (with provided API_KEY) in projects.
+
+This project utilizes two APIs provided by NASA :
+
+- [Get Random Asteroid ID]('https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{YOUR_API_KEY}}')
+- [Get Asteroid Data]('https://api.nasa.gov/neo/rest/v1/neo/{{ASTEROID_ID}}?api_key={{YOUR_API_KEY}}')
+
+Application opens with a form to enter Asteroid ID and a button to get the Random Asteroid Details.
+When form is submitted details of Asteroid as per given ID is shown below. (Utilizes 2nd API)
+
+When get Random Asteroid is clicked, first random Asteroid ID is captured (Utilizes 1st API) and
+based on that ID Asteroid details is fetched (again Utilizes 2nd API)
+
+API returns many details for Asteroid, as we are interested in specific set of properties,
+following details are shown :
+
+```
+{
+  "name": string,
+  "nasa_jpl_url": string,
+  "is_potentially_hazardous_asteroid": boolean
+}
+```
+
+### Packages used
+
+| Name                    |     Version      | Purpose                                                  |
+| :---------------------- | :--------------: | :------------------------------------------------------- |
+| @hookform/resolvers     |      2.8.0       | To bind validation schema with react hook form           |
+| @material-ui/core       |      4.12.3      | To style application                                     |
+| @material-ui/icons      |      4.11.2      | To use icons provided by material UI                     |
+| @material-ui/lab        |  4.0.0-alpha.60  | To use extra material UI components                      |
+| axios                   |      0.21.1      | For Data Fetching / HTTP requests                        |
+| react-hook-form         |      7.13.0      | To validate form inputs and events binding               |
+| react-router-dom        |      5.2.0       | For navigation / routing in react app                    |
+| react-toastify          |      8.0.0       | To display toast in application                          |
+| yup                     |      0.32.9      | Schema builder for value parsing and validation          |
+| -------------------     | Dev Dependencies | -------                                                  |
+| @types/react-router-dom |      5.1.8       | for better typescript intellisense                       |
+| prettier                |      2.3.2       | For consistent prettified code across different platform |
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -6,8 +52,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `yarn run prettier`
+
+Runs [prettier](https://prettier.io/docs/en/install.html) development package that formats code as configured in prettierrc.json.
+
 ### `yarn start`
 
+before starting app, script formats code using [prettier](https://prettier.io/docs/en/install.html) extension.
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
