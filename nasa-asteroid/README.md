@@ -5,10 +5,10 @@ The NASA (National Aeronautics and Space Administration) is an independent agenc
 NASA offers various APIs for exploring large data of space and making it available to the application developers.
 These APIs are open and requires registration to use it (with provided API_KEY) in projects.
 
-This project utilizes two APIs provided by NASA :
+This project utilizes two APIs provided by NASA:
 
-- Get Random Asteroid ID 'https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{YOUR_API_KEY}}'
-- Get Asteroid Data 'https://api.nasa.gov/neo/rest/v1/neo/{{ASTEROID_ID}}?api_key={{YOUR_API_KEY}}'
+- Get Random Asteroid ID https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{YOUR_API_KEY}}
+- Get Asteroid Data https://api.nasa.gov/neo/rest/v1/neo/{{ASTEROID_ID}}?api_key={{YOUR_API_KEY}}
 
 ### Visual Insights
 
@@ -19,7 +19,7 @@ When get Random Asteroid is clicked, first random Asteroid ID is captured (Utili
 based on that ID Asteroid details is fetched (again Utilizes 2nd API)
 
 API returns many details for Asteroid, as we are interested in specific set of properties,
-following details are shown :
+following details are shown:
 
 ```
 {
