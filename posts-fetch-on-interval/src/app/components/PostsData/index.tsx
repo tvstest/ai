@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import { useInView } from "react-intersection-observer";
-import { useFormik } from "formik";
-import { toast } from "react-toastify";
+import React, { useEffect, useState, useRef, useCallback } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { toast } from 'react-toastify'
 import {
   TableContainer,
   Table,
@@ -13,194 +12,229 @@ import {
   makeStyles,
   Typography,
   TextField,
-} from "@material-ui/core";
-import {
-  IPostFetchHitsData,
-  IPostFetchData,
-} from "app/utility/interface/post-data";
-import { GetPostsData } from "app/services/post-fetch-service";
-import { HttpStatusCodes } from "app/utility/enums/http-status-codes";
-import { ALL_DATA_FETCHED, COULD_NOT_LOAD_DATA } from "app/utility/constants";
-import { FETCH_DATA_INTERVAL_TIME } from "app/configs";
-import DialogBox from "../DialogBox";
+} from '@material-ui/core'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import { IPostFetchHitsData } from 'app/utility/interface/post-data'
+import { GetPostsData } from 'app/services/post-fetch-service'
+import { ALL_DATA_FETCHED, COULD_NOT_LOAD_DATA } from 'app/utility/constants'
+import { FETCH_DATA_INTERVAL_TIME } from 'app/configs'
+import DialogBox from '../DialogBox'
+import DatePicker from '../common/DatePickerComponent'
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    width: "100%",
-    height: "100%",
-    overflow: "auto",
-    backgroundColor: "#ccc",
-    paddingBottom: "2%",
+    width: '100%',
+    height: '100%',
+    overflow: 'auto',
+    backgroundColor: '#ccc',
+    paddingBottom: '2%',
   },
   tableCell: {
-    border: "1px solid #aaa",
+    border: '1px solid #aaa',
+    maxWidth: '400px',
+    overflowWrap: 'break-word',
+  },
+  tableRowStriped: {
+    background: '#3f51b596',
+    cursor: 'pointer',
+  },
+  tableRow: {
+    cursor: 'pointer',
+    background: '#ffffff',
   },
   tableHeadCell: {
-    border: "1px solid #aaa",
-    position: "sticky",
+    textAlign: 'center',
+    border: '1px solid #aaa',
+    position: 'sticky',
+    fontWeight: 600,
   },
   filterDiv: {
-    margin: "0px !important",
-    // width: "98%",
+    margin: '0px !important',
   },
   searchContainer: {
-    paddingBottom: "2%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    margin: "3% 0",
+    paddingBottom: '2%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: '3% 0',
   },
   postListContainer: {
-    padding: "16px",
+    padding: '16px',
   },
   searchInput: {
-    width: "100%",
+    width: '100%',
+    background: '#ffffff',
+    borderRadius: '5px',
   },
   noData: {
-    display: "flex",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-});
+  autocomplete: {
+    background: '#ffffff',
+    borderRadius: '5px',
+  },
+})
 
-interface IValue {
-  value: string;
-}
-
-interface ISearch {
-  search: string;
+interface ITableValueProps {
+  value: string
 }
 
 const columns = [
   {
-    id: "title",
-    label: "Title",
+    id: 'title',
+    label: 'Title',
   },
   {
-    id: "author",
-    label: "Author",
+    id: 'author',
+    label: 'Author',
   },
   {
-    id: "url",
-    label: "URL",
-    format: (value: IValue) => (value ? value : "-"),
+    id: 'url',
+    label: 'URL',
+    format: (value: ITableValueProps) => (value ? value : '-'),
   },
   {
-    id: "created_at",
-    label: "Crated Date",
-    format: (value: IValue) => (value ? value : "-"),
+    id: 'created_at',
+    label: 'Created Date',
+    format: (value: ITableValueProps) => (value ? value : '-'),
   },
-];
+]
 
 const PostsData = React.memo(() => {
-  const classes = useStyles();
-  const [allPostData, setPostData] = useState<IPostFetchHitsData[]>([]);
-  const [allDataFetched, setAllDataFetched] = useState(false);
-  const [selectedRowData, setSelectedRowData] = useState<IPostFetchHitsData>();
-  const [open, setOpen] = useState(false);
-  const currentPage = useRef<number>(null);
-  const [
-    lastElementInsideTableForCheckingVisibilityRef,
-    isLastElementInsideTableVisible,
-  ] = useInView();
+  const classes = useStyles()
+  const [allPostData, setPostData] = useState<IPostFetchHitsData[]>([])
+  const [allPostsFetched, setAllPostsFetched] = useState(false)
+  const [selectedRowData, setSelectedRowData] = useState<IPostFetchHitsData>()
+  const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState('')
+  const [title, setTitle] = useState('')
+  const [autoCompleteInput, setAutoCompleteInput] = useState('')
+  const [selectedDate, setSelectedDate] = useState(null)
+  const currentPage = useRef<number>(null)
+  const [lastPost, isLastPostVisible] = useInView()
 
-  const formik = useFormik<ISearch>({
-    initialValues: {
-      search: "",
-    },
-    onSubmit: async (values) => {
-      console.log(values);
-    },
-  });
-
-  const dataEndingRef = useCallback(
+  const postEndingRef = useCallback(
     (node) => {
-      lastElementInsideTableForCheckingVisibilityRef(node);
+      lastPost(node)
     },
-    [lastElementInsideTableForCheckingVisibilityRef]
-  );
+    [lastPost]
+  )
 
-  const getList = useCallback(async () => {
-    const page: number = currentPage.current ? currentPage.current : 0;
-    currentPage.current = page + 1;
-    const res = await GetPostsData(page);
-    if (res.data && res.status === HttpStatusCodes.Ok) {
-      const dataList: IPostFetchHitsData[] = res.data.hits;
+  const handleGetPostList = useCallback(async () => {
+    const page: number = currentPage.current ? currentPage.current : 0
+    currentPage.current = page + 1
+    try {
+      const res = await GetPostsData(page)
+      const dataList: IPostFetchHitsData[] = res.data.hits
       if (page >= res.data.nbPages) {
-        setAllDataFetched(true);
-        toast.info(ALL_DATA_FETCHED);
+        setAllPostsFetched(true)
+        toast.info(ALL_DATA_FETCHED)
       }
-
-      setPostData((allreadyLoadedData) => [
-        ...allreadyLoadedData.filter(
+      setPostData((existingPosts) => [
+        ...existingPosts.filter(
           (item: IPostFetchHitsData) =>
             !dataList.some(
               (i: IPostFetchHitsData) => i.objectID === item.objectID
             )
         ),
         ...dataList,
-      ]);
-    } else {
-      toast.error(COULD_NOT_LOAD_DATA);
+      ])
+    } catch (err) {
+      toast.error(COULD_NOT_LOAD_DATA)
     }
-  }, []);
+  }, [])
 
   const handleOpenDetailPopup = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleCloseDetailPopup = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleRowClick = useCallback((data: IPostFetchHitsData) => {
-    setSelectedRowData(data);
-    handleOpenDetailPopup();
-  }, []);
+    setSelectedRowData(data)
+    handleOpenDetailPopup()
+  }, [])
 
   useEffect(() => {
-    if (
-      isLastElementInsideTableVisible &&
-      allPostData &&
-      allPostData.length > 0 &&
-      !allDataFetched
-    ) {
-      getList();
+    if (isLastPostVisible && allPostData?.length > 0 && !allPostsFetched) {
+      handleGetPostList()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLastElementInsideTableVisible]);
+  }, [isLastPostVisible])
 
   useEffect(() => {
-    let fetchData: any;
-    if (!allDataFetched) {
-      getList();
-      fetchData = setInterval(() => {
-        getList();
-      }, FETCH_DATA_INTERVAL_TIME);
+    let fetchPostsInterval: any
+    if (!allPostsFetched) {
+      handleGetPostList()
+      fetchPostsInterval = setInterval(() => {
+        handleGetPostList()
+      }, FETCH_DATA_INTERVAL_TIME)
     }
     return () => {
-      clearInterval(fetchData);
-    };
+      clearInterval(fetchPostsInterval)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allDataFetched]);
+  }, [allPostsFetched])
 
-  const { search } = formik.values;
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value)
+  }
 
-  const filteredData: IPostFetchHitsData[] = allPostData.filter(
+  const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedDate(e.target.value)
+  }
+
+  const filteredPosts: IPostFetchHitsData[] = allPostData.filter(
     (item: IPostFetchHitsData) => {
-      if (search.trim()) {
+      const itemCreatedDate = new Date(item.created_at)
+        .toISOString()
+        .slice(0, 10)
+      if (search.trim() && autoCompleteInput.trim() && selectedDate) {
+        return (
+          (item.author?.toLowerCase().includes(search.trim().toLowerCase()) ||
+            item.url?.toLowerCase().includes(search.trim().toLowerCase())) &&
+          item.title?.toLowerCase() === autoCompleteInput?.toLowerCase() &&
+          selectedDate === itemCreatedDate
+        )
+      } else if (search.trim() && autoCompleteInput.trim()) {
+        return (
+          (item.author?.toLowerCase().includes(search.trim().toLowerCase()) ||
+            item.url?.toLowerCase().includes(search.trim().toLowerCase())) &&
+          item.title?.toLowerCase() === autoCompleteInput?.toLowerCase()
+        )
+      } else if (search.trim() && selectedDate) {
+        return (
+          (item.author?.toLowerCase().includes(search.trim().toLowerCase()) ||
+            item.url?.toLowerCase().includes(search.trim().toLowerCase()) ||
+            item.title?.toLowerCase() === autoCompleteInput?.toLowerCase()) &&
+          selectedDate === itemCreatedDate
+        )
+      } else if (autoCompleteInput.trim() && selectedDate) {
+        return (
+          item.title?.toLowerCase() === autoCompleteInput?.toLowerCase() &&
+          selectedDate === itemCreatedDate
+        )
+      } else if (search.trim()) {
         return (
           item.author?.toLowerCase().includes(search.trim().toLowerCase()) ||
           item.url?.toLowerCase().includes(search.trim().toLowerCase()) ||
           item.title?.toLowerCase().includes(search.trim().toLowerCase())
-        );
+        )
+      } else if (selectedDate) {
+        return selectedDate === itemCreatedDate
+      } else if (autoCompleteInput.trim()) {
+        return item.title?.toLowerCase() === autoCompleteInput?.toLowerCase()
       } else {
-        return true;
+        return true
       }
     }
-  );
+  )
 
   return (
     <Box className={classes.root}>
@@ -212,14 +246,47 @@ const PostsData = React.memo(() => {
             variant="outlined"
             name="search"
             value={search}
-            onChange={formik.handleChange}
+            onChange={handleSearch}
             className={classes.searchInput}
           />
         </Box>
-        {filteredData && filteredData.length > 0 ? (
+        <Box className={classes.searchContainer}>
+          <>
+            <Autocomplete
+              freeSolo
+              disableClearable
+              fullWidth
+              value={title}
+              options={allPostData.map((post) => post.title)}
+              onChange={(event: any, newValue: string | null) => {
+                setTitle(newValue)
+              }}
+              onInputChange={(event: any, newValue: string | null) => {
+                setAutoCompleteInput(newValue)
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Title"
+                  margin="normal"
+                  variant="outlined"
+                  InputProps={{ ...params.InputProps, type: 'search' }}
+                  className={classes.autocomplete}
+                />
+              )}
+            />
+            <DatePicker
+              handleChangeDate={(event: React.ChangeEvent<HTMLInputElement>) =>
+                handleChangeDate(event)
+              }
+            />
+          </>
+        </Box>
+
+        {filteredPosts && filteredPosts.length > 0 ? (
           <Box>
             <TableContainer className={classes.filterDiv}>
-              <Table style={{ position: "relative" }} aria-label="table">
+              <Table aria-label="sticky table">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -233,16 +300,20 @@ const PostsData = React.memo(() => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {filteredData.map((item: any, rowIndex) => (
+                  {filteredPosts.map((item: any, rowIndex) => (
                     <TableRow
                       hover
-                      style={{ cursor: "pointer" }}
+                      className={
+                        rowIndex % 2
+                          ? classes.tableRowStriped
+                          : classes.tableRow
+                      }
                       tabIndex={-1}
                       key={rowIndex}
                       onClick={() => handleRowClick(item)}
                     >
                       {columns.map((column, columnIndex) => {
-                        const value = item[column.id];
+                        const value = item[column.id]
                         return (
                           <TableCell
                             className={classes.tableCell}
@@ -250,7 +321,7 @@ const PostsData = React.memo(() => {
                           >
                             {column.format ? column.format(value) : value}
                           </TableCell>
-                        );
+                        )
                       })}
                     </TableRow>
                   ))}
@@ -265,7 +336,7 @@ const PostsData = React.memo(() => {
             </div>
           </Box>
         )}
-        <div ref={dataEndingRef} style={{ opacity: "0" }}>
+        <div ref={postEndingRef} style={{ opacity: '0' }}>
           End of data
         </div>
       </Box>
@@ -275,7 +346,7 @@ const PostsData = React.memo(() => {
         data={selectedRowData}
       />
     </Box>
-  );
-});
+  )
+})
 
-export default PostsData;
+export default PostsData
