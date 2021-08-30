@@ -2,7 +2,10 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { HttpStatusCodes } from "app/utility/enums/http-status-codes";
 import { hideLoader, showLoader } from "app/utility/helper";
-import { SOMETHING_WENT_WRONG } from "app/utility/constants";
+import {
+  SOMETHING_WENT_WRONG,
+  INTERNAL_SERVER_ERROR,
+} from "app/utility/constants";
 
 declare module "axios" {
   export interface AxiosRequestConfig {
@@ -15,7 +18,6 @@ axios.interceptors.request.use(
     if (!config.hideLoader) {
       showLoader();
     }
-
     return config;
   },
   (error: AxiosError) => {
@@ -25,10 +27,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.data.message) {
-      toast.success(response.data.message);
-    }
-
     hideLoader();
     return response;
   },
@@ -40,7 +38,7 @@ axios.interceptors.response.use(
 
     if (expectedError) {
       if (!error.response?.data?.success && error.response?.data?.message) {
-        toast.error(error.response.data.message);
+        toast.error(INTERNAL_SERVER_ERROR);
       }
     } else {
       toast.error(SOMETHING_WENT_WRONG);

@@ -1,21 +1,24 @@
+import React from "react";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: "flex",
+    "& > * + *": {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}));
+
 const Loader: React.FC = () => {
+  const classes = useStyles();
   return (
     <>
       <div id="loaderForAPICall" className="loaderHide">
         <div className="cssload-fond">
-          <div className="cssload-container-general">
-            <div className="cssload-internal">
-              <div className="cssload-ballcolor cssload-ball_1" />
-            </div>
-            <div className="cssload-internal">
-              <div className="cssload-ballcolor cssload-ball_2" />
-            </div>
-            <div className="cssload-internal">
-              <div className="cssload-ballcolor cssload-ball_3" />
-            </div>
-            <div className="cssload-internal">
-              <div className="cssload-ballcolor cssload-ball_4" />
-            </div>
+          <div className={classes.root}>
+            <CircularProgress />
           </div>
         </div>
         <div>

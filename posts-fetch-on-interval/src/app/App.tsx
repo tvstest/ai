@@ -12,8 +12,8 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <ToastContainer />
+      <Navbar />
       <ThemeProvider theme={theme}>
-        <Navbar />
         <PostsData />
         <Loader />
       </ThemeProvider>
