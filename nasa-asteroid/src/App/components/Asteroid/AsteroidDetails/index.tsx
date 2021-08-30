@@ -1,6 +1,5 @@
 import {
   Card,
-  CardActionArea,
   CardContent,
   Link,
   makeStyles,
@@ -24,18 +23,16 @@ const AsteroidDetails: React.FC = () => {
   if (state.status) {
     return (
       <Card className={root}>
-        <CardActionArea>
-          <CardContent>
-            <Typography gutterBottom variant="body1">
-              {state.status}
-            </Typography>
-            <Skeleton variant="rect" height={20} width="50%" animation="wave" />
-            <br />
-            <Skeleton variant="rect" height={15} width="30%" animation="wave" />
-            <br />
-            <Skeleton variant="rect" height={15} width="80%" animation="wave" />
-          </CardContent>
-        </CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="body1">
+            {state.status}
+          </Typography>
+          <Skeleton variant="rect" height={20} width="50%" animation="wave" />
+          <br />
+          <Skeleton variant="rect" height={15} width="30%" animation="wave" />
+          <br />
+          <Skeleton variant="rect" height={15} width="80%" animation="wave" />
+        </CardContent>
       </Card>
     )
   }
@@ -53,28 +50,26 @@ const AsteroidDetails: React.FC = () => {
     <>
       {state.details && (
         <Card className={root}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {state.details.name}
-              </Typography>
-              <Typography gutterBottom>
-                <Link
-                  target="_blank"
-                  rel="noopener"
-                  href={state.details.nasa_jpl_url}
-                  title={state.details.nasa_jpl_url}
-                >
-                  Nasa URL
-                </Link>
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {state.details.is_potentially_hazardous_asteroid
-                  ? 'Asteroid is potentially hazardous'
-                  : 'Asteroid is most probably harmless'}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {state.details.name}
+            </Typography>
+            <Typography gutterBottom>
+              <Link
+                target="_blank"
+                rel="noopener"
+                href={state.details.nasa_jpl_url}
+                title={state.details.nasa_jpl_url}
+              >
+                Nasa URL
+              </Link>
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {state.details.is_potentially_hazardous_asteroid
+                ? 'Asteroid is potentially hazardous'
+                : 'Asteroid is most probably harmless'}
+            </Typography>
+          </CardContent>
         </Card>
       )}
     </>
