@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Modal,
   Fade,
@@ -12,48 +12,48 @@ import {
   TableRow,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import { IPostFetchHitsData } from "app/utility/interface/post-data";
+} from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
+import { IPostFetchHitsData } from 'app/utility/interface/post-data'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    maxWidth: "51.5rem",
-    maxHeight: "94vh",
-    margin: " 0 auto",
-    boxShadow: "0 0 12px 0 rgba(0, 0, 0, 0.12)",
-    background: "#ffffff",
-    position: "absolute",
-    left: "0",
-    right: "0",
-    top: "50%",
-    transform: "translateY(-50%)",
-    borderRadius: "8px",
-    border: "0",
+    maxWidth: '51.5rem',
+    maxHeight: '94vh',
+    margin: ' 0 auto',
+    boxShadow: '0 0 12px 0 rgba(0, 0, 0, 0.12)',
+    background: '#ffffff',
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    borderRadius: '8px',
+    border: '0',
   },
   close: {
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   closeButton: {
     color: theme.palette.grey[500],
   },
   details: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "2%",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '2%',
   },
   paper: {
-    width: "95%",
+    width: '95%',
   },
-}));
+}))
 
 interface IDialogProps {
-  open?: boolean;
-  close?: () => void;
-  data?: IPostFetchHitsData;
+  open: boolean
+  close: () => void
+  data?: IPostFetchHitsData
 }
 
 const DialogBox: React.FC<IDialogProps> = ({
@@ -61,7 +61,7 @@ const DialogBox: React.FC<IDialogProps> = ({
   close,
   data,
 }: IDialogProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -110,7 +110,7 @@ const DialogBox: React.FC<IDialogProps> = ({
         </Grid>
       </Fade>
     </Modal>
-  );
-};
+  )
+}
 
-export default DialogBox;
+export default DialogBox
