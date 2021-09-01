@@ -1,12 +1,12 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import { CardMedia } from "@material-ui/core";
-import { ICountry } from "app/utils/interfaces/country";
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import { CardMedia } from '@material-ui/core'
+import { ICountry } from 'app/utils/interfaces/country'
 
 const useStyles = makeStyles({
   root: {
@@ -18,18 +18,18 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
-});
+})
 
 interface CountryCardProps {
-  country: ICountry;
-  onClickWeatherCapitalButton: any;
+  country: ICountry
+  onClickWeatherCapitalButton: any
 }
 
 const CountryCard = ({
   country,
   onClickWeatherCapitalButton,
 }: CountryCardProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -49,8 +49,8 @@ const CountryCard = ({
             Population : {country.population}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Latitude, Longitude :{" "}
-            {country.latlng[0] + "°  " + country.latlng[1] + "°"}
+            Latitude, Longitude :{' '}
+            {country.latlng[0] + '°  ' + country.latlng[1] + '°'}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -65,7 +65,7 @@ const CountryCard = ({
         </Button>
       </CardActions>
     </Card>
-  );
-};
+  )
+}
 
-export default CountryCard;
+export default CountryCard

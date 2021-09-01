@@ -1,9 +1,9 @@
-import { createTheme } from "@material-ui/core";
+import { createTheme } from '@material-ui/core'
 
 const appTheme = createTheme({
   typography: {
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
   },
-});
+})
 
-export default appTheme;
+export default appTheme

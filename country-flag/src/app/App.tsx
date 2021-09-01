@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";
-import CountrySearchForm from "app/components/Country/CountrySearchForm";
-import CountryList from "app/components/Country/CountryList";
-import Navbar from "app/components/Navbar";
-import { Routes } from "app/utils/enums/routes";
-import { ThemeProvider } from "@material-ui/core";
-import appTheme from "app/theme";
+} from 'react-router-dom'
+import CountrySearchForm from 'app/components/Country/CountrySearchForm'
+import CountryList from 'app/components/Country/CountryList'
+import Navbar from 'app/components/Navbar'
+import { Routes } from 'app/utils/enums/routes'
+import { ThemeProvider } from '@material-ui/core'
+import appTheme from 'app/theme'
 
 const App: React.FC = () => {
   return (
@@ -24,6 +24,6 @@ const App: React.FC = () => {
         </Switch>
       </Router>
     </ThemeProvider>
-  );
-};
-export default App;
+  )
+}
+export default App
