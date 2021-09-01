@@ -27,7 +27,6 @@ const useStyles = makeStyles({
     width: '100%',
     height: '100%',
     overflow: 'auto',
-    backgroundColor: '#ccc',
     paddingBottom: '2%',
   },
   tableCell: {
