@@ -1,5 +1,5 @@
 export enum Routes {
-  Home = "/",
-  Countries = "/countries",
-  CountriesByName = "/countries/:countryName",
+  Home = '/',
+  Countries = '/countries',
+  CountriesByName = '/countries/:countryName',
 }

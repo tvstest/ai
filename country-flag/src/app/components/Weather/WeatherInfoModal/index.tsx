@@ -1,47 +1,47 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import Typography from "@material-ui/core/Typography";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import { makeStyles, Theme } from "@material-ui/core";
-import { ICapitalWeatherInfo } from "app/utils/interfaces/weather";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import Typography from '@material-ui/core/Typography'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogActions from '@material-ui/core/DialogActions'
+import { makeStyles, Theme } from '@material-ui/core'
+import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
+import Avatar from '@material-ui/core/Avatar'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     maxWidth: 345,
     minHeight: 200,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "10px auto",
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '10px auto',
   },
   loader: {
-    alignItems: "center",
-    display: "flex",
-    justifyContent: "center",
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
   },
   closeButton: {
-    position: "absolute",
+    position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
   centerContent: {
-    alignItems: "center",
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
-}));
+}))
 
 interface IWeatherInfoModalProps {
-  open: boolean;
-  capitalWeatherInfo: ICapitalWeatherInfo;
-  handleClose: () => void;
+  open: boolean
+  capitalWeatherInfo: ICapitalWeatherInfo
+  handleClose: () => void
 }
 
 const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
@@ -49,14 +49,14 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
   handleClose,
   capitalWeatherInfo,
 }: IWeatherInfoModalProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Dialog
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
       open={open}
       fullWidth={true}
-      maxWidth={"sm"}
+      maxWidth={'sm'}
     >
       <DialogTitle disableTypography id="customized-dialog-title">
         <Typography variant="h6">Weather Information</Typography>
@@ -78,7 +78,7 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
           )
         )}
         <Typography variant="body1" color="textSecondary">
-          Temperature : {capitalWeatherInfo?.current?.temperature + "°"}
+          Temperature : {capitalWeatherInfo?.current?.temperature + '°'}
         </Typography>
         <Typography variant="body1" color="textSecondary">
           Wind Speed : {capitalWeatherInfo?.current?.wind_speed} km/h
@@ -99,7 +99,7 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
-export default WeatherInfoModal;
+export default WeatherInfoModal
