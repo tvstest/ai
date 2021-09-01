@@ -10,7 +10,7 @@ import CountryList from 'app/components/Country/CountryList'
 import Navbar from 'app/components/Navbar'
 import { Routes } from 'app/utils/enums/routes'
 import { ThemeProvider } from '@material-ui/core'
-import appTheme from 'app/theme'
+import appTheme from 'app/configs/theme'
 
 const App: React.FC = () => {
   return (
