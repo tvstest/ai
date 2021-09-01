@@ -1,18 +1,18 @@
-import React from "react";
-import { makeStyles, Theme } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    display: "flex",
-    "& > * + *": {
+    display: 'flex',
+    '& > * + *': {
       marginLeft: theme.spacing(2),
     },
   },
-}));
+}))
 
 const Loader: React.FC = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <>
       <div id="loaderForAPICall" className="loaderHide">
@@ -27,7 +27,7 @@ const Loader: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Loader;
+export default Loader

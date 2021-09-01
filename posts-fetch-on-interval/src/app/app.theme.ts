@@ -1,9 +1,9 @@
-import { createTheme } from "@material-ui/core/styles";
-import { toast } from "react-toastify";
+import { createTheme } from '@material-ui/core/styles'
+import { toast } from 'react-toastify'
 
 export const theme = createTheme({
   typography: {
-    fontFamily: "Montserrat",
+    fontFamily: 'Montserrat',
   },
   breakpoints: {
     values: {
@@ -14,11 +14,11 @@ export const theme = createTheme({
       xl: 1920,
     },
   },
-});
+})
 
 toast.configure({
   autoClose: 5000,
   draggable: false,
   pauseOnFocusLoss: false,
   position: toast.POSITION.TOP_RIGHT,
-});
+})

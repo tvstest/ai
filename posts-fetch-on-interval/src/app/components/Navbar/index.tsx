@@ -1,6 +1,6 @@
-import React from "react";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,14 +11,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
     },
   },
-}));
+}))
 
 const Navbar = React.memo(() => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
@@ -30,7 +30,7 @@ const Navbar = React.memo(() => {
         </Toolbar>
       </AppBar>
     </div>
-  );
-});
+  )
+})
 
-export default Navbar;
+export default Navbar
