@@ -248,7 +248,6 @@ const PostsData = React.memo(() => {
                 <TextField
                   {...params}
                   label="Title"
-                  margin="normal"
                   variant="outlined"
                   InputProps={{ ...params.InputProps, type: 'search' }}
                   className={classes.autocomplete}
