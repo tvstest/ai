@@ -26,8 +26,8 @@
     "yup": "0.32.9"
   },
   "scripts": {
-    "prettify": "prettier --write .",
-    "start": "yarn run prettify && react-scripts start",
+    "start": "npm run format && react-scripts start",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,json}",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
