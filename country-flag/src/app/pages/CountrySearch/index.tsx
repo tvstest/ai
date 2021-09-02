@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CountrySearchForm: React.FC = () => {
+const CountrySearch: React.FC = () => {
   const classes = useStyles()
   const history = useHistory()
   const [countryNameInput, setCountryNameInput] = useState<string>('')
@@ -70,4 +70,4 @@ const CountrySearchForm: React.FC = () => {
   )
 }
 
-export default CountrySearchForm
+export default CountrySearch
