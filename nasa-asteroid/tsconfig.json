@@ -27,5 +27,5 @@
     "src",
     "node_modules/common-ui",
     "node_modules/common-types"
-  ]
+  ],
 }
