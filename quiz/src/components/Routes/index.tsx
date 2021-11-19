@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import Layout from 'components/Layout'
 import { lazy } from 'react'
-import { Redirect, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import { AppRoutings } from 'utilities/enum/app-routings'
 
@@ -37,11 +37,11 @@ const Routes: React.FC = () => {
             <Route exact path={path} component={component} key={key} />
           ))}
 
-        <Redirect
+        {/* <Redirect
           to={{
-            pathname: AppRoutings.Registration,
+            pathname: AppRoutings.Quiz,
           }}
-        />
+        /> */}
       </Layout>
     </Switch>
   )
