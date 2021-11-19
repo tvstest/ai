@@ -1,7 +1,7 @@
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
-import { Button, CircularProgress, Grid, TextField } from '@material-ui/core'
+import { Button, CircularProgress, Grid, TextField } from '@mui/material'
 import { useCallback } from 'react'
 import _ from 'lodash'
 import { useAsteroidContext } from 'app/context/AsteroidContext'
@@ -69,6 +69,7 @@ const AsteroidForm: React.FC = () => {
     dispatch(loadRandomAsteroidId())
 
     const {
+      // eslint-disable-next-line camelcase
       data: { near_earth_objects },
     } = await asteroidServices.getRandomAsteroidId()
     const randomAsteroidData = _.sample(near_earth_objects)

@@ -1,11 +1,11 @@
-import {
-  Card,
-  CardContent,
-  Link,
-  makeStyles,
-  Typography,
-} from '@material-ui/core'
-import { Alert, Skeleton, AlertTitle } from '@material-ui/lab'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Link from '@mui/material/Link'
+import Skeleton from '@mui/material/Skeleton'
+import Typography from '@mui/material/Typography'
+import makeStyles from '@mui/styles/makeStyles'
 import { useAsteroidContext } from 'app/context/AsteroidContext'
 
 const useStyles = makeStyles({
@@ -27,11 +27,26 @@ const AsteroidDetails: React.FC = () => {
           <Typography gutterBottom variant="body1">
             {state.status}
           </Typography>
-          <Skeleton variant="rect" height={20} width="50%" animation="wave" />
+          <Skeleton
+            variant="rectangular"
+            height={20}
+            width="50%"
+            animation="wave"
+          />
           <br />
-          <Skeleton variant="rect" height={15} width="30%" animation="wave" />
+          <Skeleton
+            variant="rectangular"
+            height={15}
+            width="30%"
+            animation="wave"
+          />
           <br />
-          <Skeleton variant="rect" height={15} width="80%" animation="wave" />
+          <Skeleton
+            variant="rectangular"
+            height={15}
+            width="80%"
+            animation="wave"
+          />
         </CardContent>
       </Card>
     )
