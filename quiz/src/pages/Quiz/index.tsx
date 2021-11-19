@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
 import { Language } from 'utilities/enum/language'
 import { questionsData } from '__mock__'
+import steps from '__mock__/stepper'
+import StepperComponent from 'components/Stepper'
 
 const Quiz: React.FC = () => {
   const [questions] = useState(questionsData)
@@ -31,6 +33,8 @@ const Quiz: React.FC = () => {
   return (
     <>
       Hello {username}
+      <br />
+      <StepperComponent steps={steps} onClick={(e) => console.log(e)} />
       <br />
       <b>Question: </b>
       {
