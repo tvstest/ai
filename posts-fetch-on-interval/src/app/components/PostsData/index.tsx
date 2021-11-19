@@ -9,11 +9,11 @@ import {
   TableCell,
   TableRow,
   Box,
-  makeStyles,
   Typography,
   TextField,
-} from '@material-ui/core'
-import Autocomplete from '@material-ui/lab/Autocomplete'
+} from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import Autocomplete from '@mui/material/Autocomplete'
 import { IPostFetchHitsData } from 'app/utility/interface/post-data'
 import { GetPostsData } from 'app/services/post-fetch-service'
 import { ALL_DATA_FETCHED, COULD_NOT_LOAD_DATA } from 'app/utility/constants'
@@ -288,15 +288,15 @@ const PostsData = React.memo(() => {
                           : classes.tableRow
                       }
                       tabIndex={-1}
-                      key={rowIndex}
+                      key={`${item.objectID}`}
                       onClick={() => handleRowClick(item)}
                     >
-                      {columns.map((column, columnIndex) => {
+                      {columns.map((column) => {
                         const value = item[column.id]
                         return (
                           <TableCell
                             className={classes.tableCell}
-                            key={`${rowIndex}${columnIndex}`}
+                            key={`${item.objectID}-${column.id}`}
                           >
                             {column.format ? column.format(value) : value}
                           </TableCell>
