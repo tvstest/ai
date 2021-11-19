@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import Layout from 'components/Layout'
 import { lazy } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Redirect, Switch, Route } from 'react-router-dom'
 
 import { AppRoutings } from 'utilities/enum/app-routings'
 
