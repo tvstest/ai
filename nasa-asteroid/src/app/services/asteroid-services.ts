@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { NASA_API_KEY_PREFIX } from 'app/constants'
 import { AxiosResponse } from 'axios'
 import {
