@@ -1,4 +1,4 @@
-export enum QuestionTypes {
+export enum QuestionType {
   MultipleChoice,
   CorrectIncorrect,
   FillInTheBlanks,

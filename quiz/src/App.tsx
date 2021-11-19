@@ -1,34 +1,19 @@
 import './App.css'
-import Stepper, { IStep } from './components/Stepper'
+import { CircularProgress, ThemeProvider } from '@mui/material'
+import { Suspense } from 'react'
+import Routes from 'components/Routes'
+import theme from 'configs/app-theme'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-const steps: IStep[] = [
-  {
-    step: 1,
-    status: 'answered',
-  },
-  {
-    step: 2,
-    status: 'not_answered',
-  },
-  {
-    step: 3,
-    status: 'not_answered',
-  },
-  {
-    step: 4,
-    status: 'answered',
-  },
-  {
-    step: 5,
-    status: 'answered',
-  },
-]
-
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App" style={{ marginTop: 10 }}>
-      <Stepper steps={steps} onClick={(e) => console.log(e)} />
-    </div>
+    <Suspense fallback={<CircularProgress />}>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes />
+        </Router>
+      </ThemeProvider>
+    </Suspense>
   )
 }
 

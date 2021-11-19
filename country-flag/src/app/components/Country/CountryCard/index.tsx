@@ -65,7 +65,7 @@ const CountryCard = ({
           <Typography variant="body1" color="primary" component="p">
             Latitude, Longitude :{' '}
             <Typography variant="body2" component="span" color="textSecondary">
-              {country.latlng[0] + '°  ' + country.latlng[1] + '°'}
+              {`${country.latlng[0]}°  ${country.latlng[1]}°`}
             </Typography>
           </Typography>
         </CardContent>

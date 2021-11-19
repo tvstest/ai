@@ -55,8 +55,8 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
       open={open}
-      fullWidth={true}
-      maxWidth={'sm'}
+      fullWidth
+      maxWidth="sm"
     >
       <DialogTitle disableTypography id="customized-dialog-title">
         <Typography variant="h6">Weather Information</Typography>
@@ -78,7 +78,7 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
           )
         )}
         <Typography variant="body1" color="textSecondary">
-          Temperature : {capitalWeatherInfo?.current?.temperature + '°'}
+          Temperature : {`${capitalWeatherInfo?.current?.temperature}°`}
         </Typography>
         <Typography variant="body1" color="textSecondary">
           Wind Speed : {capitalWeatherInfo?.current?.wind_speed} km/h

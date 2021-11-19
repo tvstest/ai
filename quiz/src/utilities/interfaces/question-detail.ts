@@ -1,6 +1,9 @@
-import { QuestionTypes } from "../enum/question-type";
+import { QuestionType } from '../enum/question-type'
+import { IQuestionLanguageDetail } from './question-languages-detail'
 
 export interface IQuestionDetail {
-  question: string;
-  questionType: QuestionTypes;
+  id: number
+  questionType: QuestionType
+  languages: IQuestionLanguageDetail[]
+  correctAnswer: string | number[]
 }
