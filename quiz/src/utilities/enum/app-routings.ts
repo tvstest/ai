@@ -1,4 +1,4 @@
 export enum AppRoutings {
-  Registration = '/registration',
+  Registration = '/',
   Quiz = '/quiz',
 }
