@@ -1,4 +1,5 @@
-import { Container, makeStyles } from '@material-ui/core'
+import Container from '@mui/material/Container'
+import makeStyles from '@mui/styles/makeStyles'
 import AsteroidDetails from 'app/components/Asteroid/AsteroidDetails'
 import AsteroidForm from 'app/components/Asteroid/AsteroidForm'
 import AsteroidContextWrapper from 'app/context/AsteroidContext'
@@ -9,7 +10,7 @@ const useStyles = makeStyles({
   },
 })
 
-const Home = () => {
+const Home: React.FC = () => {
   const { topMargin } = useStyles()
 
   return (

@@ -96,7 +96,7 @@ const AsteroidContextWrapper: React.FC = ({ children }) => {
   )
 }
 
-export const useAsteroidContext = () => {
+export const useAsteroidContext = (): IAsteroidContext => {
   const context = useContext(AsteroidContext)
   if (!context) {
     throw new Error(

@@ -3,7 +3,7 @@ import { NASA_BASE_URL } from 'app/constants'
 import { HttpStatusCodes } from 'app/utility/enums/http-status-codes'
 import { toast } from 'react-toastify'
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: NASA_BASE_URL,
 })
 

@@ -34,7 +34,7 @@ following details are shown:
 | Name                    |    Version     | Purpose                                                  |
 | :---------------------- | :------------: | :------------------------------------------------------- |
 | @hookform/resolvers     |     2.8.0      | To bind validation schema with react hook form           |
-| @material-ui/core       |     4.12.3     | For styling Application                                  |
+| @mui/material           |     4.12.3     | For styling Application                                  |
 | @material-ui/icons      |     4.11.2     | To display icons provided by material UI                 |
 | @material-ui/lab        | 4.0.0-alpha.60 | Provides extra material UI components                    |
 | @types/react-router-dom |     5.1.8      | For better typescript intellisense                       |
