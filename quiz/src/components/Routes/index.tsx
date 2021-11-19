@@ -36,13 +36,13 @@ const Routes: React.FC = () => {
           .map(({ path, component }, key) => (
             <Route exact path={path} component={component} key={key} />
           ))}
-      </Layout>
 
-      <Redirect
-        to={{
-          pathname: AppRoutings.Registration,
-        }}
-      />
+        <Redirect
+          to={{
+            pathname: AppRoutings.Registration,
+          }}
+        />
+      </Layout>
     </Switch>
   )
 }
