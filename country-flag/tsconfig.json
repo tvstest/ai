@@ -1,17 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "target": "es5",
+    "baseUrl": "src",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
     "allowJs": true,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -22,6 +24,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/common-ui",
+    "node_modules/common-types"
   ]
 }

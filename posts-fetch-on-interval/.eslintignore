@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/package.json
+**/yarn.lock
+**/package-lock.json
+**/.prettierrc.js
+**/tsconfig.json
+src/reportWebVitals.ts
+src/app/utility/interfaces
+config-overrides.js

@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { BASE_URL } from 'app/configs'
-import httpClient from './base-service'
 import { IPostFetchData } from 'app/utility/interface/post-data'
+import httpClient from './base-service'
 
 export const GetPostsData = (
   page: number

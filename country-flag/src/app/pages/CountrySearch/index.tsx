@@ -57,7 +57,7 @@ const CountrySearch: React.FC = () => {
           <Button
             variant="contained"
             color="primary"
-            disabled={!Boolean(countryNameInput)}
+            disabled={!countryNameInput}
             type="submit"
             fullWidth
             className={classes.submit}

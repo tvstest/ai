@@ -94,12 +94,12 @@ const columns = [
   {
     id: 'url',
     label: 'URL',
-    format: (value: ITableValueProps) => (value ? value : '-'),
+    format: (value: ITableValueProps) => value || '-',
   },
   {
     id: 'created_at',
     label: 'Created Date',
-    format: (value: ITableValueProps) => (value ? value : '-'),
+    format: (value: ITableValueProps) => value || '-',
   },
 ]
 
