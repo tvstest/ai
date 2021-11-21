@@ -5,6 +5,7 @@ export interface IPostFetchData {
 }
 
 export interface IPostFetchHitsData {
+  // eslint-disable-next-line camelcase
   created_at?: string
   title?: string
   url?: string

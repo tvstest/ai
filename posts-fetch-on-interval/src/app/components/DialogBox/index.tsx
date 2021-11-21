@@ -11,12 +11,12 @@ import {
   TableCell,
   TableRow,
   Paper,
-  makeStyles,
-} from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close'
+} from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import CloseIcon from '@mui/icons-material/Close'
 import { IPostFetchHitsData } from 'app/utility/interface/post-data'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   modal: {
     maxWidth: '51.5rem',
     maxHeight: '94vh',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   closeButton: {
-    color: theme.palette.grey[500],
+    color: 'grey',
   },
   details: {
     display: 'flex',
