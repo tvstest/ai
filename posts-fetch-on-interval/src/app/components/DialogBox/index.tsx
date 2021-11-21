@@ -88,7 +88,7 @@ const DialogBox: React.FC<IDialogProps> = ({
           <Grid className={classes.details} item xs={12}>
             {data && (
               <TableContainer className={classes.paper} component={Paper}>
-                <Table aria-label="simple table">
+                <Table id="detail-table" aria-label="simple table">
                   <TableBody>
                     <TableRow>
                       <TableCell>Title</TableCell>
