@@ -1,5 +1,6 @@
 import React from 'react'
-import { render, queryByAttribute, act } from '@testing-library/react'
+import { render, queryByAttribute, act, waitFor, fireEvent } from 'test-utils'
+import renderer from 'react-test-renderer'
 import { setupIntersectionObserverMock } from 'app/utility/testUtilities'
 import * as PostFetchServices from 'app/services/post-fetch-service'
 import PostsData from 'app/components/PostsData/index'
@@ -15,19 +16,44 @@ test('renders posts table data', () => {
   expect(table).toBeDefined()
 })
 
-test('Get posts api should be called 1 time only', async () => {
-  const apiFunc = jest.spyOn(PostFetchServices, 'GetPostsData')
+test('input elements are rendered properly', async () => {
+  const getById = queryByAttribute.bind(null, 'id')
+  const dom = render(<PostsData />)
+  const inputElement = getById(dom.container, 'search')
+
   await act(async () => {
-    await render(<PostsData />)
-    expect(apiFunc).toBeCalledTimes(1)
+    fireEvent.change(inputElement, {
+      target: { value: '' },
+    })
+  })
+
+  await waitFor(async () => {
+    expect(inputElement).toBeInTheDocument()
+  })
+})
+
+test('Get posts api should be called 1 time only', async () => {
+  const mockApiFunction = jest.spyOn(PostFetchServices, 'GetPostsData')
+  await act(async () => {
+    render(<PostsData />)
+    await waitFor(async () => {
+      expect(mockApiFunction).toHaveBeenCalledTimes(1)
+    })
   })
 })
 
 test('Get posts api should be called 3 times', async () => {
-  const apiFunc = jest.spyOn(PostFetchServices, 'GetPostsData')
+  const mockApiFunction = jest.spyOn(PostFetchServices, 'GetPostsData')
   await act(async () => {
-    await render(<PostsData />)
+    render(<PostsData />)
     await new Promise((r) => setTimeout(r, 21000))
-    expect(apiFunc).toBeCalledTimes(3)
+    await waitFor(async () => {
+      expect(mockApiFunction).toHaveBeenCalledTimes(3)
+    })
   })
 }, 40000)
+
+test('renders PostData correctly', () => {
+  const domTree = renderer.create(<PostsData />).toJSON()
+  expect(domTree).toMatchSnapshot()
+})

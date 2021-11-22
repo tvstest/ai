@@ -8,7 +8,7 @@ import Navbar from 'app/components/Navbar'
 import PostsData from 'app/components/PostsData'
 import { theme } from 'app/app.theme'
 import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
+import 'app/App.css'
 
 const AppComponent: React.FC = () => {
   return (

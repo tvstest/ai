@@ -161,8 +161,17 @@ const PostsData = React.memo(() => {
   }, [])
 
   useEffect(() => {
-    if (isLastPostVisible && allPostData?.length > 0 && !allPostsFetched) {
+    let unmounted = true
+    if (
+      unmounted &&
+      isLastPostVisible &&
+      allPostData?.length > 0 &&
+      !allPostsFetched
+    ) {
       handleGetPostList()
+    }
+    return () => {
+      unmounted = false
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLastPostVisible])
@@ -221,7 +230,7 @@ const PostsData = React.memo(() => {
       <Box className={classes.postListContainer}>
         <Box className={classes.searchContainer}>
           <TextField
-            id="outlined-basic"
+            id="search"
             label="Search post"
             variant="outlined"
             name="search"
