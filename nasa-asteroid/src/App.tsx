@@ -1,4 +1,4 @@
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
+import { ThemeProvider } from '@mui/material/styles'
 import Navbar from 'app/components/Navbar'
 import Routes from 'app/components/Routes'
 import { Suspense } from 'react'
