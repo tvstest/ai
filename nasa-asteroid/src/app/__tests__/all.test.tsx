@@ -9,10 +9,7 @@ test('App loads with router and mui theme configuration properly', () => {
 })
 
 test('rendering and submitting a form', async () => {
-  const handleSubmit = jest.fn(() => {
-    // eslint-disable-next-line no-console
-    console.log('oh')
-  })
+  const handleSubmit = jest.fn()
   const { getByTestId, getByRole } = render(
     <AsteroidForm handler={handleSubmit} />
   )
