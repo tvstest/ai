@@ -1,4 +1,4 @@
-import { IStep } from 'components/Stepper'
+import { IStep } from 'components/QuestionStepper'
 
 const steps: IStep[] = [
   {

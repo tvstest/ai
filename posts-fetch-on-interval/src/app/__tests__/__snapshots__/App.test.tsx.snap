@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders App correctly 1`] = `
+Array [
+  <div
+    className="Toastify"
+  />,
+  <div
+    className="makeStyles-root-22"
+  >
+    <header
+      className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-hip9hq-MuiPaper-root-MuiAppBar-root"
+    >
+      <div
+        className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1xwc9t2-MuiToolbar-root"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6 MuiTypography-noWrap makeStyles-title-24 css-1sr3gzp-MuiTypography-root"
+        >
+          Posts
+        </h6>
+      </div>
+    </header>
+  </div>,
+  <div
+    className="makeStyles-root-25 MuiBox-root css-0"
+  >
+    <div
+      className="makeStyles-postListContainer-32 MuiBox-root css-0"
+    >
+      <div
+        className="makeStyles-searchContainer-31 MuiBox-root css-0"
+      >
+        <div
+          className="MuiFormControl-root MuiTextField-root makeStyles-searchInput-33 css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1pw3wan-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink={false}
+            htmlFor="search"
+            id="search-label"
+          >
+            Search post
+          </label>
+          <div
+            className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1q5oif2-MuiInputBase-root-MuiOutlinedInput-root"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+              data-testid="search"
+              disabled={false}
+              id="search"
+              name="search"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden={true}
+              className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="css-173wfxe"
+              >
+                <span>
+                  Search post
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        className="makeStyles-searchContainer-31 MuiBox-root css-0"
+      >
+        <div
+          aria-expanded={false}
+          aria-owns={null}
+          className="MuiAutocomplete-root MuiAutocomplete-fullWidth css-eozd4h-MuiAutocomplete-root"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          role="combobox"
+        >
+          <div
+            className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root makeStyles-autocomplete-35 css-wb57ya-MuiFormControl-root-MuiTextField-root"
+          >
+            <label
+              className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1pw3wan-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink={false}
+              id="undefined-label"
+            >
+              Title
+            </label>
+            <div
+              className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1g6xlmm-MuiInputBase-root-MuiOutlinedInput-root"
+              onClick={[Function]}
+            >
+              <input
+                aria-activedescendant={null}
+                aria-autocomplete="list"
+                aria-controls={null}
+                aria-invalid={false}
+                autoCapitalize="none"
+                autoComplete="off"
+                autoFocus={false}
+                className="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1j5luls-MuiInputBase-input-MuiOutlinedInput-input"
+                disabled={false}
+                onAnimationStart={[Function]}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                required={false}
+                spellCheck="false"
+                type="search"
+                value=""
+              />
+              <div
+                className="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+              />
+              <fieldset
+                aria-hidden={true}
+                className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  className="css-173wfxe"
+                >
+                  <span>
+                    Title
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div
+          className="MuiFormControl-root MuiTextField-root makeStyles-textField-36 css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1rzclia-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink={true}
+            htmlFor="date"
+            id="date-label"
+          >
+            Created At
+          </label>
+          <div
+            className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1q5oif2-MuiInputBase-root-MuiOutlinedInput-root"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+              defaultValue=""
+              disabled={false}
+              id="date"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="date"
+            />
+            <fieldset
+              aria-hidden={true}
+              className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="css-1z7n62"
+              >
+                <span>
+                  Created At
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiBox-root css-0"
+      >
+        <div
+          className="makeStyles-noData-34"
+        >
+          <p
+            className="MuiTypography-root MuiTypography-body1 css-10zdtnx-MuiTypography-root"
+          >
+             No data found 
+          </p>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "opacity": "0",
+          }
+        }
+      >
+        End of data
+      </div>
+    </div>
+  </div>,
+  <div
+    className="loaderHide"
+    id="loaderForAPICall"
+  >
+    <div
+      className="cssload-fond"
+    >
+      <div
+        className="makeStyles-root-42"
+      >
+        <span
+          className="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+          role="progressbar"
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        >
+          <svg
+            className="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+              cx={44}
+              cy={44}
+              fill="none"
+              r={20.2}
+              strokeWidth={3.6}
+              style={Object {}}
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div>
+      <div
+        className="loader-overlay-nav"
+      />
+      <div
+        className="loader-overlay"
+        id="loaderNav"
+      />
+    </div>
+  </div>,
+]
+`;

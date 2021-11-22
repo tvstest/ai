@@ -1,24 +1,28 @@
-import { Button, Grid } from '@mui/material'
+import { Button, Grid, Alert } from '@mui/material'
 import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
 import { Language } from 'utilities/enum/language'
 import { questionsData } from '__mock__'
-import StepperComponent, { IStep } from 'components/Stepper'
+import StepperComponent, { IStep } from 'components/QuestionStepper'
 import { IQuestionDetail } from 'utilities/interfaces/question-detail'
+import { useLocation } from 'react-router-dom'
+import QuestionCard from 'components/QuestionCard'
 
 const Quiz: React.FC = () => {
   const [questions] = useState<IQuestionDetail[]>(questionsData)
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(
     DEFAULT_QUESTION_INDEX
   )
+  const [userAttemptedQuestions] = useState([])
+
   const [preferredLanguage] = useState(Language.English)
-  const [username] = useState('Aakash')
+  const { state }: any = useLocation()
+  console.log(state)
   const getDefaultSteps = (data: IQuestionDetail[]): IStep[] => {
     return data.map((question, index) => {
       return { step: index + 1, status: 'not_answered' }
     })
   }
-
   const [steps] = useState(getDefaultSteps(questionsData))
 
   const handleBackClick = () => {
@@ -41,9 +45,31 @@ const Quiz: React.FC = () => {
     alert('thanks for submitting quiz')
   }
 
+  const handleAnswer = (userAnswer: string | number[]) => {
+    console.log(userAttemptedQuestions)
+    const currentQuestion = questionsData[activeQuestionIndex]
+
+    const existingUserAttemptedQuestion = userAttemptedQuestions.find(
+      (q) => q.id === activeQuestionIndex + 1
+    )
+    if (existingUserAttemptedQuestion) {
+      userAttemptedQuestions.find(
+        (q) => q.id === activeQuestionIndex + 1
+      ).userAnswer = userAnswer
+    } else {
+      userAttemptedQuestions.push({
+        questionId: currentQuestion.id,
+        correctAnswer: currentQuestion.correctAnswer,
+        userAnswer,
+      })
+    }
+  }
+
   return (
     <>
-      Hello {username}
+      <Alert icon={false} severity="success">
+        Hi {state?.name}
+      </Alert>
       <Grid
         container
         spacing={1}
@@ -56,24 +82,11 @@ const Quiz: React.FC = () => {
           <StepperComponent steps={steps} onClick={handleQuestionClick} />
           <br />
         </Grid>
-        <Grid item xs={12}>
-          <b>Question: </b>
-          {
-            questions[activeQuestionIndex].languages.find(
-              (item) => item.language === preferredLanguage
-            ).question
-          }
-          <br />
-          {questions[activeQuestionIndex].languages
-            .find((item) => item.language === Language.English)
-            .answerOptions.map((answerOption, index) => (
-              <>
-                <br />
-                <b>Option {index + 1}</b> {answerOption.description}
-              </>
-            ))}
-          <br />
-        </Grid>
+        <QuestionCard
+          questionsData={questions[activeQuestionIndex]}
+          preferredLanguage={preferredLanguage}
+          handleAnswer={handleAnswer}
+        />
         <Grid item xs={12}>
           {activeQuestionIndex !== DEFAULT_QUESTION_INDEX && (
             <Button color="inherit" onClick={handleBackClick} sx={{ mr: 1 }}>

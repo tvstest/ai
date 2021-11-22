@@ -11,21 +11,23 @@ import Select from '@mui/material/Select'
 import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
 import { useHistory } from 'react-router-dom'
+import { Language } from 'utilities/enum/language'
+import { AppRoutings } from 'utilities/enum/app-routings'
+import { GENDER, LANGUAGE } from 'utilities/constants'
 
 const Registration: React.FC = () => {
   const history = useHistory()
   const [name, setName] = useState('')
   const [gender, setGender] = useState(null)
-  const [language, setLanguage] = useState('English')
+  const [language, setLanguage] = useState(Language.English)
 
   const handleClick = () => {
     const req = {
       name,
-      gender,
       language,
     }
     history.push({
-      pathname: '/quiz',
+      pathname: AppRoutings.Quiz,
       state: req,
     })
   }
@@ -52,12 +54,13 @@ const Registration: React.FC = () => {
             onChange={(e) => setGender(e.target.value)}
             name="radio-buttons-group"
           >
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            {GENDER.map((gen) => (
+              <FormControlLabel
+                value={gen.value}
+                control={<Radio />}
+                label={gen.label}
+              />
+            ))}
           </RadioGroup>
         </FormControl>
       </div>
@@ -69,10 +72,11 @@ const Registration: React.FC = () => {
             id="demo-simple-select"
             value={language}
             label="Language"
-            onChange={(e) => setLanguage(e.target.value)}
+            onChange={(e) => setLanguage(e.target.value as Language)}
           >
-            <MenuItem value="English">English</MenuItem>
-            <MenuItem value="Hindi">Hindi</MenuItem>
+            {LANGUAGE.map((lang) => (
+              <MenuItem value={lang.value}>{lang.label}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
