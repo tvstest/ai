@@ -13,6 +13,8 @@ const Quiz: React.FC = () => {
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(
     DEFAULT_QUESTION_INDEX
   )
+  const [userAttemptedQuestions] = useState([])
+
   const [preferredLanguage] = useState(Language.English)
   const { state }: any = useLocation()
   console.log(state)
@@ -42,6 +44,27 @@ const Quiz: React.FC = () => {
   const handleSubmit = () => {
     alert('thanks for submitting quiz')
   }
+
+  const handleAnswer = (userAnswer: string | number[]) => {
+    console.log(userAttemptedQuestions)
+    const currentQuestion = questionsData[activeQuestionIndex]
+
+    const existingUserAttemptedQuestion = userAttemptedQuestions.find(
+      (q) => q.id === activeQuestionIndex + 1
+    )
+    if (existingUserAttemptedQuestion) {
+      userAttemptedQuestions.find(
+        (q) => q.id === activeQuestionIndex + 1
+      ).userAnswer = userAnswer
+    } else {
+      userAttemptedQuestions.push({
+        questionId: currentQuestion.id,
+        correctAnswer: currentQuestion.correctAnswer,
+        userAnswer,
+      })
+    }
+  }
+
   return (
     <>
       <Alert icon={false} severity="success">
@@ -62,7 +85,7 @@ const Quiz: React.FC = () => {
         <QuestionCard
           questionsData={questions[activeQuestionIndex]}
           preferredLanguage={preferredLanguage}
-          handleAnswer={(e) => console.log(e)}
+          handleAnswer={handleAnswer}
         />
         <Grid item xs={12}>
           {activeQuestionIndex !== DEFAULT_QUESTION_INDEX && (
