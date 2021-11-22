@@ -31,19 +31,21 @@ following details are shown:
 
 ### Packages used
 
-| Name                    |    Version     | Purpose                                                  |
-| :---------------------- | :------------: | :------------------------------------------------------- |
-| @hookform/resolvers     |     2.8.0      | To bind validation schema with react hook form           |
-| @material-ui/core       |     4.12.3     | For styling Application                                  |
-| @material-ui/icons      |     4.11.2     | To display icons provided by material UI                 |
-| @material-ui/lab        | 4.0.0-alpha.60 | Provides extra material UI components                    |
-| @types/react-router-dom |     5.1.8      | For better typescript intellisense                       |
-| axios                   |     0.21.1     | For Data Fetching / HTTP requests                        |
-| prettier                |     2.3.2      | For consistent prettified code across different platform |
-| react-hook-form         |     7.13.0     | To validate form inputs and events binding               |
-| react-router-dom        |     5.2.0      | For navigation / routing in react app                    |
-| react-toastify          |     8.0.0      | To display toast in application                          |
-| yup                     |     0.32.9     | Schema builder for value parsing and validation          |
+| Name                    | Version | Purpose                                                  |
+| :---------------------- | :-----: | :------------------------------------------------------- |
+| @hookform/resolvers     |  2.8.0  | To bind validation schema with react hook form           |
+| @emotion/react          | 11.6.0  | Peer dependencies of @mui/material                       |
+| @emotion/styled         | 11.6.0  | Peer dependencies of @mui/material                       |
+| @mui/material           |  5.1.1  | For styling Application                                  |
+| @mui/icons-material     |  5.1.1  | To display icons provided by material UI                 |
+| @mui/styles             |  5.1.1  | CSS in JS styling helper                                 |
+| @types/react-router-dom |  5.1.8  | For better typescript intellisense                       |
+| axios                   | 0.21.1  | For Data Fetching / HTTP requests                        |
+| prettier                |  2.3.2  | For consistent prettified code across different platform |
+| react-hook-form         | 7.13.0  | To validate form inputs and events binding               |
+| react-router-dom        |  5.2.0  | For navigation / routing in react app                    |
+| react-toastify          |  8.0.0  | To display toast in application                          |
+| yup                     | 0.32.9  | Schema builder for value parsing and validation          |
 
 # Getting Started with Create React App
 
