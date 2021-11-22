@@ -5,7 +5,7 @@ import { IQuestionDetail } from 'utilities/interfaces/question-detail'
 export const questionsData: IQuestionDetail[] = [
   {
     id: 1,
-    questionType: QuestionType.MultipleChoice,
+    questionType: QuestionType.SingleSelect,
     languages: [
       {
         language: Language.English,
@@ -59,7 +59,7 @@ export const questionsData: IQuestionDetail[] = [
   },
   {
     id: 2,
-    questionType: QuestionType.MultiSelect,
+    questionType: QuestionType.CorrectIncorrect,
     languages: [
       {
         language: Language.English,
@@ -80,5 +80,22 @@ export const questionsData: IQuestionDetail[] = [
       },
     ],
     correctAnswer: [1],
+  },
+  {
+    id: 4,
+    questionType: QuestionType.FillInTheBlanks,
+    languages: [
+      {
+        language: Language.English,
+        question: 'Where Does the Sun Rise?',
+        answerOptions: [],
+      },
+      {
+        language: Language.Hindi,
+        question: 'Where Does the Sun Rise?',
+        answerOptions: [],
+      },
+    ],
+    correctAnswer: 'EAST',
   },
 ]

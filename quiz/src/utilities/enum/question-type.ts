@@ -1,5 +1,5 @@
 export enum QuestionType {
-  MultipleChoice,
+  SingleSelect,
   CorrectIncorrect,
   FillInTheBlanks,
   MatchTheFollowing,

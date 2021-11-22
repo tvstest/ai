@@ -6,4 +6,5 @@ export interface IQuestionDetail {
   questionType: QuestionType
   languages: IQuestionLanguageDetail[]
   correctAnswer: string | number[]
+  userAnswer?: string | number[]
 }

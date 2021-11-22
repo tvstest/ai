@@ -3,9 +3,10 @@ import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
 import { Language } from 'utilities/enum/language'
 import { questionsData } from '__mock__'
-import StepperComponent, { IStep } from 'components/Stepper'
+import StepperComponent, { IStep } from 'components/QuestionStepper'
 import { IQuestionDetail } from 'utilities/interfaces/question-detail'
 import { useLocation } from 'react-router-dom'
+import QuestionCard from 'components/QuestionCard'
 
 const Quiz: React.FC = () => {
   const [questions] = useState<IQuestionDetail[]>(questionsData)
@@ -20,7 +21,6 @@ const Quiz: React.FC = () => {
       return { step: index + 1, status: 'not_answered' }
     })
   }
-
   const [steps] = useState(getDefaultSteps(questionsData))
 
   const handleBackClick = () => {
@@ -59,24 +59,11 @@ const Quiz: React.FC = () => {
           <StepperComponent steps={steps} onClick={handleQuestionClick} />
           <br />
         </Grid>
-        <Grid item xs={12}>
-          <b>Question: </b>
-          {
-            questions[activeQuestionIndex].languages.find(
-              (item) => item.language === preferredLanguage
-            ).question
-          }
-          <br />
-          {questions[activeQuestionIndex].languages
-            .find((item) => item.language === Language.English)
-            .answerOptions.map((answerOption, index) => (
-              <>
-                <br />
-                <b>Option {index + 1}</b> {answerOption.description}
-              </>
-            ))}
-          <br />
-        </Grid>
+        <QuestionCard
+          questionsData={questions[activeQuestionIndex]}
+          preferredLanguage={preferredLanguage}
+          handleAnswer={(e) => console.log(e)}
+        />
         <Grid item xs={12}>
           {activeQuestionIndex !== DEFAULT_QUESTION_INDEX && (
             <Button color="inherit" onClick={handleBackClick} sx={{ mr: 1 }}>
