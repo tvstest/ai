@@ -2,18 +2,15 @@ import React, { useState } from 'react'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-import { IQuestionDetail } from 'utilities/interfaces/question-detail'
-import { Language } from 'utilities/enum/language'
+import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-detail'
 
 interface IMultiSelectProps {
   handleAnswer: (userAnswer: string | number[]) => void
-  questionsData: IQuestionDetail
-  preferredLanguage: Language
+  questionsData: IQuestionAnswerDetail
 }
 
 const MultiSelect: React.FC<IMultiSelectProps> = ({
   handleAnswer,
-  preferredLanguage,
   questionsData,
 }) => {
   const [answers, setAnswer] = useState<number[]>(
@@ -38,21 +35,17 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
 
   return (
     <FormGroup>
-      {questionsData.languages[preferredLanguage].answerOptions.map(
-        (option) => (
-          <FormControlLabel
-            control={
-              <Checkbox
-                onChange={(e, checked) =>
-                  multiSelectHandler(option.id, checked)
-                }
-                checked={answers.includes(option.id)}
-              />
-            }
-            label={option.description}
-          />
-        )
-      )}
+      {questionsData.answerOptions.map((option) => (
+        <FormControlLabel
+          control={
+            <Checkbox
+              onChange={(e, checked) => multiSelectHandler(option.id, checked)}
+              checked={answers.includes(option.id)}
+            />
+          }
+          label={option.description}
+        />
+      ))}
     </FormGroup>
   )
 }

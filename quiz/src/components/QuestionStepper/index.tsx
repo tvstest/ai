@@ -2,10 +2,11 @@ import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import { StepLabel } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import { QuestionAttemptType } from 'utilities/enum/question-attempt-type'
 
 export interface IStep {
   step: number
-  status: 'answered' | 'not_answered'
+  status: QuestionAttemptType
 }
 
 interface IStepperComponentProps {
@@ -31,7 +32,7 @@ const StepperComponent: React.FC<IStepperComponentProps> = ({
         return (
           <Step
             key={item.step}
-            active={item.status === 'answered'}
+            active={item.status === QuestionAttemptType.Answered}
             onClick={() => onClick(item.step)}
           >
             <StepLabel />
