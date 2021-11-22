@@ -4,10 +4,10 @@ import { makeStyles } from '@mui/styles'
 import Button from '@mui/material/Button'
 import { useHistory } from 'react-router-dom'
 import Container from '@mui/material/Container'
-import { CssBaseline } from '@mui/material'
+import { CssBaseline, Theme } from '@mui/material'
 import { Routes } from 'app/utils/enums/routes'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',

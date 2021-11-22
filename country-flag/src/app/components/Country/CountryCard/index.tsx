@@ -32,10 +32,10 @@ const useStyles = makeStyles({
 
 interface CountryCardProps {
   country: ICountry
-  onClickWeatherCapitalButton: any
+  onClickWeatherCapitalButton: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const CountryCard = ({
+const CountryCard: React.FC<CountryCardProps> = ({
   country,
   onClickWeatherCapitalButton,
 }: CountryCardProps) => {
