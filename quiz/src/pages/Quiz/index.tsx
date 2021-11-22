@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
 import { Language } from 'utilities/enum/language'
 import { questionsData } from '__mock__'
-import StepperComponent, { IStep } from 'components/Stepper'
+import StepperComponent, { IStep } from 'components/QuestionStepper'
 import { IQuestionDetail } from 'utilities/interfaces/question-detail'
 import QuestionCard from 'components/QuestionCard'
 
