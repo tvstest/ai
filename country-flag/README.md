@@ -1,6 +1,6 @@
 npx create-react-app . --template typescript
 
-yarn add axios react-router-dom @material-ui/core @material-ui/icons
+yarn add axios react-router-dom @mui/material @material-ui/icons
 
 yarn add @types/react-router-dom prettier --dev
 
