@@ -38,6 +38,7 @@ const CorrectInCorrect: React.FC<ICorrectIncorrectProps> = ({
               control={<Radio />}
               label={option.description}
               value={option.id}
+              key={option.id}
             />
           )
         )}
