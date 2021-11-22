@@ -19,8 +19,6 @@ const Quiz: React.FC = () => {
       return { step: index + 1, status: 'not_answered' }
     })
   }
-  const [fillInBlank, setFillInBlank] = useState('')
-
   const [steps] = useState(getDefaultSteps(questionsData))
 
   const handleBackClick = () => {
@@ -43,16 +41,6 @@ const Quiz: React.FC = () => {
     alert('thanks for submitting quiz')
   }
 
-  const multiSelectHandler = (id: number, checked: boolean) => {
-    // we have to maintain answers from here
-    console.log('selected-or-unselect', id, checked)
-  }
-
-  const singleSelectHandler = (value: string) => {
-    // we have to maintain single select answer from here
-    console.log('value', value)
-  }
-
   return (
     <>
       Hello {username}
@@ -71,10 +59,7 @@ const Quiz: React.FC = () => {
         <QuestionCard
           questionsData={questions[activeQuestionIndex]}
           preferredLanguage={preferredLanguage}
-          fillInBlank={fillInBlank}
-          onFillInBlankHandler={setFillInBlank}
-          multiSelectHandler={multiSelectHandler}
-          singleSelectHandler={singleSelectHandler}
+          handleAnswer={(e) => console.log(e)}
         />
         <Grid item xs={12}>
           {activeQuestionIndex !== DEFAULT_QUESTION_INDEX && (
