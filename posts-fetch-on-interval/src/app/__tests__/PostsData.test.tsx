@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, queryByAttribute, act, waitFor, fireEvent } from 'test-utils'
+import { render, queryByAttribute, act, waitFor } from 'test-utils'
 import renderer from 'react-test-renderer'
 import { setupIntersectionObserverMock } from 'app/utility/testUtilities'
 import * as PostFetchServices from 'app/services/post-fetch-service'
@@ -17,19 +17,9 @@ test('renders posts table data', () => {
 })
 
 test('input elements are rendered properly', async () => {
-  const getById = queryByAttribute.bind(null, 'id')
-  const dom = render(<PostsData />)
-  const inputElement = getById(dom.container, 'search')
-
-  await act(async () => {
-    fireEvent.change(inputElement, {
-      target: { value: '' },
-    })
-  })
-
-  await waitFor(async () => {
-    expect(inputElement).toBeInTheDocument()
-  })
+  const { getByTestId } = render(<PostsData />)
+  const inputElement = getByTestId('search')
+  expect(inputElement).toBeInTheDocument()
 })
 
 test('Get posts api should be called 1 time only', async () => {

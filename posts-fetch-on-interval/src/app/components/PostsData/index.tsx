@@ -231,6 +231,7 @@ const PostsData = React.memo(() => {
         <Box className={classes.searchContainer}>
           <TextField
             id="search"
+            inputProps={{ 'data-testid': 'search' }}
             label="Search post"
             variant="outlined"
             name="search"

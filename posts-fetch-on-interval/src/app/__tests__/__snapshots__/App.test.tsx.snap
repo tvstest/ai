@@ -50,6 +50,7 @@ Array [
               aria-invalid={false}
               autoFocus={false}
               className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+              data-testid="search"
               disabled={false}
               id="search"
               name="search"
