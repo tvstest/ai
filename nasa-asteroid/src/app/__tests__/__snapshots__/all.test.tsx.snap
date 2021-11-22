@@ -19,7 +19,7 @@ Object {
         </div>
       </header>
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg makeStyles-topMargin-7 css-1oqqzyl-MuiContainer-root"
+        class="MuiContainer-root MuiContainer-maxWidthLg makeStyles-topMargin-9 css-1oqqzyl-MuiContainer-root"
       >
         <form
           novalidate=""
@@ -126,7 +126,7 @@ Object {
       </div>
     </header>
     <div
-      class="MuiContainer-root MuiContainer-maxWidthLg makeStyles-topMargin-7 css-1oqqzyl-MuiContainer-root"
+      class="MuiContainer-root MuiContainer-maxWidthLg makeStyles-topMargin-9 css-1oqqzyl-MuiContainer-root"
     >
       <form
         novalidate=""
