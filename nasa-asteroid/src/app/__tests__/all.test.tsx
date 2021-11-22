@@ -40,3 +40,22 @@ test('Random asteroid get api is being called (1 time)', async () => {
     expect(mockFn).toHaveBeenCalledTimes(1)
   })
 })
+
+test('specific asteroid get api is called', async () => {
+  const mockFn = jest.spyOn(service, 'getAsteroidById')
+  const { getByTestId } = render(<AsteroidForm />)
+  const inputElement = getByTestId('asteroidId')
+  await act(async () => {
+    fireEvent.change(inputElement, {
+      target: { value: '2001980' },
+    })
+  })
+
+  await act(async () => {
+    fireEvent.click(getByTestId('form-submit'))
+  })
+
+  await waitFor(async () => {
+    expect(mockFn).toHaveBeenLastCalledWith('2001980')
+  })
+})
