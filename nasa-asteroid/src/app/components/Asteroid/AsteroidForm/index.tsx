@@ -128,6 +128,7 @@ const AsteroidForm: React.FC<{ handler?: (payload: IAsteroidForm) => void }> =
             <Button
               variant="contained"
               color="primary"
+              data-testid="random-button"
               onClick={getRandomAsteroid}
               disabled={loading}
               startIcon={loading ? <CircularProgress size={20} /> : undefined}

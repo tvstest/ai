@@ -3,6 +3,7 @@ import '@testing-library/jest-dom'
 import App from 'App'
 import AsteroidForm from 'app/components/Asteroid/AsteroidForm'
 import { act } from 'react-dom/test-utils'
+import service from 'app/services/asteroid-services'
 
 test('App loads with router and mui theme configuration properly', () => {
   render(<App />)
@@ -24,5 +25,18 @@ test('Form validations are triggered properly', async () => {
 
   await waitFor(async () => {
     expect(getByText('please enter 7 digit asteroid id')).toBeInTheDocument()
+  })
+})
+
+test('Random asteroid get api is being called (1 time)', async () => {
+  const { getByTestId } = render(<App />)
+  const mockFn = jest.spyOn(service, 'getRandomAsteroidId')
+
+  await act(async () => {
+    fireEvent.click(getByTestId('random-button'))
+  })
+
+  await waitFor(async () => {
+    expect(mockFn).toHaveBeenCalledTimes(1)
   })
 })
