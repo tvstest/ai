@@ -1,17 +1,17 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import Typography from '@material-ui/core/Typography'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogActions from '@material-ui/core/DialogActions'
-import { makeStyles, Theme } from '@material-ui/core'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import Typography from '@mui/material/Typography'
+import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import { makeStyles } from '@mui/styles'
 import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
-import Avatar from '@material-ui/core/Avatar'
-import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
+import Avatar from '@mui/material/Avatar'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     maxWidth: 345,
     minHeight: 200,
@@ -58,7 +58,7 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle disableTypography id="customized-dialog-title">
+      <DialogTitle id="customized-dialog-title">
         <Typography variant="h6">Weather Information</Typography>
         <IconButton
           aria-label="close"
@@ -74,7 +74,11 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
         </Typography>
         {capitalWeatherInfo?.current?.weather_icons?.map(
           (weatherIconUrl: string) => (
-            <Avatar variant="rounded" src={weatherIconUrl} />
+            <Avatar
+              key={weatherIconUrl}
+              variant="rounded"
+              src={weatherIconUrl}
+            />
           )
         )}
         <Typography variant="body1" color="textSecondary">

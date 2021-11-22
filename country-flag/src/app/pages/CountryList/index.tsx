@@ -1,11 +1,6 @@
-import {
-  CircularProgress,
-  Container,
-  Grid,
-  makeStyles,
-  Typography,
-} from '@material-ui/core'
-import countryService from 'app/services/country-service'
+import { CircularProgress, Container, Grid, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { countryService } from 'app/services/country-service'
 import { ICountry } from 'app/utils/interfaces/country'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
@@ -18,7 +13,7 @@ import WeatherInfoModal from 'app/components/Weather/WeatherInfoModal'
 import weatherService from 'app/services/weather-service'
 import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -45,7 +40,6 @@ const CountryList: React.FC = () => {
       }
     } catch (e) {
       console.log(ERROR_FETCHING_WEATHER)
-    } finally {
     }
   }
 

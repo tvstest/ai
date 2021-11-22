@@ -9,7 +9,7 @@ import CountrySearch from 'app/pages/CountrySearch'
 import CountryList from 'app/pages/CountryList'
 import Navbar from 'app/components/Navbar'
 import { Routes } from 'app/utils/enums/routes'
-import { ThemeProvider } from '@material-ui/core'
+import { ThemeProvider } from '@mui/material'
 import appTheme from 'app/configs/theme'
 
 const App: React.FC = () => {

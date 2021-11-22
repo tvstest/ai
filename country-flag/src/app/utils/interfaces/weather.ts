@@ -4,8 +4,10 @@ export interface ILocation {
 }
 
 export interface ICurrentWeather {
+  // eslint-disable-next-line camelcase
   weather_icons: string[]
   temperature: number
+  // eslint-disable-next-line camelcase
   wind_speed: number
   precip: number
 }

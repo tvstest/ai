@@ -1,4 +1,5 @@
-import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles(() => ({
   toolbar: {
