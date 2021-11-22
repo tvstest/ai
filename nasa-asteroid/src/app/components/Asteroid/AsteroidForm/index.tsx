@@ -116,6 +116,7 @@ const AsteroidForm: React.FC<{ handler?: (payload: IAsteroidForm) => void }> =
               type="submit"
               variant="contained"
               role="button"
+              data-testid="form-submit"
               name="submit"
               color="primary"
               disabled={loading}

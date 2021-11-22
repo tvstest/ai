@@ -1,4 +1,4 @@
-import { render, fireEvent } from 'test-utils'
+import { render, fireEvent, waitFor } from 'test-utils'
 import '@testing-library/jest-dom'
 import App from 'App'
 import AsteroidForm from 'app/components/Asteroid/AsteroidForm'
@@ -8,23 +8,21 @@ test('App loads with router and mui theme configuration properly', () => {
   render(<App />)
 })
 
-test('rendering and submitting a form', async () => {
-  const handleSubmit = jest.fn()
-  const { getByTestId, getByRole } = render(
-    <AsteroidForm handler={handleSubmit} />
-  )
+test('Form validations are triggered properly', async () => {
+  const { getByTestId, getByText } = render(<AsteroidForm />)
   const inputElement = getByTestId('asteroidId')
 
   await act(async () => {
     fireEvent.change(inputElement, {
-      target: { value: '2001980' },
+      target: { value: '20019' },
     })
   })
 
   await act(async () => {
-    fireEvent.submit(getByRole('button'), { name: 'submit' })
+    fireEvent.click(getByTestId('form-submit'))
   })
 
-  // not working :(
-  expect(handleSubmit).toHaveBeenCalled()
+  await waitFor(async () => {
+    expect(getByText('please enter 7 digit asteroid id')).toBeInTheDocument()
+  })
 })
