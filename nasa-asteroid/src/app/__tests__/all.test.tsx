@@ -61,6 +61,15 @@ test('specific asteroid get api is called', async () => {
   })
 })
 
+test('buttons are disabled when data is being fetched', async () => {
+  const { getByTestId } = render(<AsteroidForm />)
+  const buttonElement = getByTestId('random-button')
+
+  fireEvent.click(buttonElement)
+
+  expect(buttonElement).toBeDisabled()
+})
+
 test('matches the form snapshot', async () => {
   const formContainer = render(<AsteroidForm />)
   expect(formContainer).toMatchSnapshot()
