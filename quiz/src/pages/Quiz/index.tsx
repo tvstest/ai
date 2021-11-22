@@ -27,9 +27,9 @@ const Quiz: React.FC = () => {
       }
     })
   }
-  const [questionAnswers] = useState<IQuestionAnswerDetail[]>(
-    getLanguageSpecificQuestions()
-  )
+  const [questionAnswers, setQuestionAnswers] = useState<
+    IQuestionAnswerDetail[]
+  >(getLanguageSpecificQuestions())
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(
     DEFAULT_QUESTION_INDEX
   )
@@ -38,7 +38,7 @@ const Quiz: React.FC = () => {
 
   const getDefaultSteps = (data: IQuestionDetail[]): IStep[] => {
     return data.map((question, index) => {
-      return { step: index + 1, status: QuestionAttemptType.Answered }
+      return { step: index + 1, status: QuestionAttemptType.NotAnswered }
     })
   }
   const [steps] = useState(getDefaultSteps(questionsData))
@@ -64,20 +64,10 @@ const Quiz: React.FC = () => {
   }
 
   const handleAnswer = (userAnswer: string | number[]) => {
-    const currentQuestion = questionAnswers[activeQuestionIndex]
-
-    const existingUserAttemptedQuestion = questionAnswers.findIndex(
-      (q) => q.id === activeQuestionIndex + 1
-    )
-    if (existingUserAttemptedQuestion !== -1) {
-      questionAnswers.find((q) => q.id === activeQuestionIndex + 1).userAnswer =
-        userAnswer
-    } else {
-      questionAnswers.push({
-        ...currentQuestion,
-        isCorrectAnswer: currentQuestion.correctAnswer === userAnswer,
-      })
-    }
+    setQuestionAnswers((qa) => {
+      qa.find((q) => q.id === activeQuestionIndex + 1).userAnswer = userAnswer
+      return qa
+    })
   }
 
   return (
