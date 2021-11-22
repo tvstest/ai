@@ -3,18 +3,15 @@ import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { Radio } from '@mui/material'
 import RadioGroup from '@mui/material/RadioGroup'
-import { IQuestionDetail } from 'utilities/interfaces/question-detail'
-import { Language } from 'utilities/enum/language'
+import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-detail'
 
 interface ISingleSelectProps {
   handleAnswer: (userAnswer: string | number[]) => void
-  questionsData: IQuestionDetail
-  preferredLanguage: Language
+  questionsData: IQuestionAnswerDetail
 }
 
 const SingleSelect: React.FC<ISingleSelectProps> = ({
   handleAnswer,
-  preferredLanguage,
   questionsData,
 }) => {
   const [checked, setChecked] = useState([])
@@ -32,15 +29,13 @@ const SingleSelect: React.FC<ISingleSelectProps> = ({
         onChange={(e) => singleSelectHandler(e.target.value)}
         value={checked && checked.length > 0 ? checked[0] : null}
       >
-        {questionsData.languages[preferredLanguage].answerOptions.map(
-          (option) => (
-            <FormControlLabel
-              control={<Radio />}
-              label={option.description}
-              value={option.id}
-            />
-          )
-        )}
+        {questionsData.answerOptions.map((option) => (
+          <FormControlLabel
+            control={<Radio />}
+            label={option.description}
+            value={option.id}
+          />
+        ))}
       </RadioGroup>
     </FormGroup>
   )
