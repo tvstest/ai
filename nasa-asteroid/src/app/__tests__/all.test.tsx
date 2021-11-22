@@ -5,7 +5,6 @@ import Home from 'app/pages/Home'
 import AsteroidForm from 'app/components/Asteroid/AsteroidForm'
 import { act } from 'react-dom/test-utils'
 import service from 'app/services/asteroid-services'
-import AsteroidDetails from 'app/components/Asteroid/AsteroidDetails'
 
 test('App loads with router and mui theme configuration properly', () => {
   render(<App />)
