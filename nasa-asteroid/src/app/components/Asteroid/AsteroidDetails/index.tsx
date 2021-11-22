@@ -62,32 +62,30 @@ const AsteroidDetails: React.FC = () => {
   }
 
   return (
-    <>
-      {state.details && (
-        <Card className={root}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {state.details.name}
-            </Typography>
-            <Typography gutterBottom>
-              <Link
-                target="_blank"
-                rel="noopener"
-                href={state.details.nasa_jpl_url}
-                title={state.details.nasa_jpl_url}
-              >
-                Nasa URL
-              </Link>
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {state.details.is_potentially_hazardous_asteroid
-                ? 'Asteroid is potentially hazardous'
-                : 'Asteroid is most probably harmless'}
-            </Typography>
-          </CardContent>
-        </Card>
-      )}
-    </>
+    state.details && (
+      <Card className={root}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {state.details.name}
+          </Typography>
+          <Typography gutterBottom>
+            <Link
+              target="_blank"
+              rel="noopener"
+              href={state.details.nasa_jpl_url}
+              title={state.details.nasa_jpl_url}
+            >
+              Nasa URL
+            </Link>
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {state.details.is_potentially_hazardous_asteroid
+              ? 'Asteroid is potentially hazardous'
+              : 'Asteroid is most probably harmless'}
+          </Typography>
+        </CardContent>
+      </Card>
+    )
   )
 }
 
