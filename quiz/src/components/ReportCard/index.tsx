@@ -1,0 +1,3 @@
+const ReportCard: React.FC = ({ }) => {
+
+}
