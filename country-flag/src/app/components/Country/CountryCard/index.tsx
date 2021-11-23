@@ -45,15 +45,15 @@ const CountryCard: React.FC<CountryCardProps> = ({
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={country.flags.png}
-          title={country.name.common}
+          image={country.flag}
+          title={country.name}
         />
         <Divider />
         <CardContent className={classes.customCard}>
           <Typography gutterBottom variant="h6">
-            {country.name.common}
+            {country.name}
             <Typography variant="subtitle1" component="p" color="textSecondary">
-              {country.capital[0]}
+              {country.capital}
             </Typography>
           </Typography>
           <Typography variant="body1" color="primary" component="p">
