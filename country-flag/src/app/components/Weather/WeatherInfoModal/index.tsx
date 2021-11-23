@@ -8,8 +8,6 @@ import DialogActions from '@mui/material/DialogActions'
 import { makeStyles } from '@mui/styles'
 import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
 import Avatar from '@mui/material/Avatar'
-import IconButton from '@mui/material/IconButton'
-import CloseIcon from '@mui/icons-material/Close'
 import { Theme } from '@mui/material'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -61,13 +59,6 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
     >
       <DialogTitle id="customized-dialog-title">
         <Typography variant="h6">Weather Information</Typography>
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={handleClose}
-        >
-          <CloseIcon />
-        </IconButton>
       </DialogTitle>
       <DialogContent dividers className={classes.centerContent}>
         <Typography variant="h4">
