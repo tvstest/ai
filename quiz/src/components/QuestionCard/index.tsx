@@ -1,6 +1,5 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import { Language } from 'utilities/enum/language'
 import { QuestionType } from 'utilities/enum/question-type'
 import FillInTheBlank from 'components/QuestionType/FillInTheBlanks'
 import MultiSelect from 'components/QuestionType/MultiSelect'
@@ -10,7 +9,6 @@ import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-deta
 
 interface IQuestionCardProps {
   questionData: IQuestionAnswerDetail
-  preferredLanguage: Language
   handleAnswer: (userAnswer: string | number[]) => void
 }
 

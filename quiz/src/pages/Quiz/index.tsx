@@ -1,7 +1,6 @@
 import { Button, Grid, Alert } from '@mui/material'
 import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
-import { Language } from 'utilities/enum/language'
 import { questionsData } from '__mock__'
 import StepperComponent, { IStep } from 'components/QuestionStepper'
 import { IQuestionDetail } from 'utilities/interfaces/question-detail'
@@ -9,13 +8,17 @@ import { useLocation } from 'react-router-dom'
 import QuestionCard from 'components/QuestionCard'
 import { QuestionAttemptType } from 'utilities/enum/question-attempt-type'
 import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-detail'
+import { IRegistrationHistoryState } from 'utilities/interfaces/registration-state'
 
 const Quiz: React.FC = () => {
-  const [preferredLanguage] = useState(Language.English)
+  const {
+    state: { name, language },
+  } = useLocation<IRegistrationHistoryState>()
+
   const getLanguageSpecificQuestions = (): IQuestionAnswerDetail[] => {
     return questionsData.map((q) => {
       const { question, answerOptions } = q.languages.find(
-        (l) => l.language === preferredLanguage
+        (l) => l.language === language
       )
       return {
         id: q.id,
@@ -30,11 +33,10 @@ const Quiz: React.FC = () => {
   const [questionAnswers, setQuestionAnswers] = useState<
     IQuestionAnswerDetail[]
   >(getLanguageSpecificQuestions())
+
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(
     DEFAULT_QUESTION_INDEX
   )
-  const { state }: any = useLocation()
-  console.log(state)
 
   const getDefaultSteps = (data: IQuestionDetail[]): IStep[] => {
     return data.map((question, index) => {
@@ -73,7 +75,7 @@ const Quiz: React.FC = () => {
   return (
     <>
       <Alert icon={false} severity="success">
-        Hi {state?.name}
+        Hi {name}
       </Alert>
       <Grid
         container
@@ -89,7 +91,6 @@ const Quiz: React.FC = () => {
         </Grid>
         <QuestionCard
           questionData={questionAnswers[activeQuestionIndex]}
-          preferredLanguage={preferredLanguage}
           handleAnswer={handleAnswer}
         />
         <Grid item xs={12}>
