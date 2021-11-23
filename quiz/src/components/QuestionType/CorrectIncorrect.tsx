@@ -14,10 +14,12 @@ const CorrectInCorrect: React.FC<ICorrectIncorrectProps> = ({
   handleAnswer,
   questionsData,
 }) => {
-  const [checked, setChecked] = useState([])
+  const [checked, setChecked] = useState(
+    (questionsData.userAnswer as Array<number>) ?? []
+  )
 
   const singleSelectHandler = (value: string) => {
-    setChecked([value])
+    setChecked([Number(value)])
     handleAnswer([Number(value)])
   }
 
