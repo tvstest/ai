@@ -1,32 +1,25 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import { IQuestionDetail } from 'utilities/interfaces/question-detail'
-import { Language } from 'utilities/enum/language'
 import { QuestionType } from 'utilities/enum/question-type'
 import FillInTheBlank from 'components/QuestionType/FillInTheBlanks'
 import MultiSelect from 'components/QuestionType/MultiSelect'
 import SingleSelect from 'components/QuestionType/SingleSelect'
 import CorrectInCorrect from 'components/QuestionType/CorrectIncorrect'
+import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-detail'
 
 interface IQuestionCardProps {
-  questionsData: IQuestionDetail
-  preferredLanguage: Language
+  questionData: IQuestionAnswerDetail
   handleAnswer: (userAnswer: string | number[]) => void
 }
 
 const QuestionCard: React.FC<IQuestionCardProps> = ({
-  questionsData,
-  preferredLanguage,
+  questionData: questionsData,
   handleAnswer,
 }) => {
   return (
     <Grid item xs={12} key={questionsData.id}>
       <b>Question: </b>
-      {
-        questionsData.languages.find(
-          (item) => item.language === preferredLanguage
-        ).question
-      }
+      {questionsData.question}
       <br />
       {questionsData.questionType === QuestionType.FillInTheBlanks && (
         <FillInTheBlank
@@ -37,7 +30,6 @@ const QuestionCard: React.FC<IQuestionCardProps> = ({
       {questionsData.questionType === QuestionType.MultiSelect && (
         <MultiSelect
           questionsData={questionsData}
-          preferredLanguage={preferredLanguage}
           handleAnswer={handleAnswer}
         />
       )}
@@ -45,14 +37,12 @@ const QuestionCard: React.FC<IQuestionCardProps> = ({
         <SingleSelect
           handleAnswer={handleAnswer}
           questionsData={questionsData}
-          preferredLanguage={preferredLanguage}
         />
       )}
       {questionsData.questionType === QuestionType.CorrectIncorrect && (
         <CorrectInCorrect
           handleAnswer={handleAnswer}
           questionsData={questionsData}
-          preferredLanguage={preferredLanguage}
         />
       )}
       <br />

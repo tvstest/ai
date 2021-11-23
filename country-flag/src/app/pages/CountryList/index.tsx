@@ -1,4 +1,10 @@
-import { CircularProgress, Container, Grid, Typography } from '@mui/material'
+import {
+  CircularProgress,
+  Container,
+  Grid,
+  Typography,
+  Theme,
+} from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { countryService } from 'app/services/country-service'
 import { ICountry } from 'app/utils/interfaces/country'
@@ -13,7 +19,7 @@ import WeatherInfoModal from 'app/components/Weather/WeatherInfoModal'
 import weatherService from 'app/services/weather-service'
 import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),

@@ -10,8 +10,9 @@ import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import { Theme } from '@mui/material'
 
-const useStyles = makeStyles((theme: any) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     maxWidth: 345,
     minHeight: 200,

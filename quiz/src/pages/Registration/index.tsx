@@ -14,6 +14,7 @@ import { useHistory } from 'react-router-dom'
 import { Language } from 'utilities/enum/language'
 import { AppRoutings } from 'utilities/enum/app-routings'
 import { GENDER, LANGUAGE } from 'utilities/constants'
+import { IRegistrationHistoryState } from 'utilities/interfaces/registration-state'
 
 const Registration: React.FC = () => {
   const history = useHistory()
@@ -22,7 +23,7 @@ const Registration: React.FC = () => {
   const [language, setLanguage] = useState(Language.English)
 
   const handleClick = () => {
-    const req = {
+    const req: IRegistrationHistoryState = {
       name,
       language,
     }
@@ -59,6 +60,7 @@ const Registration: React.FC = () => {
                 value={gen.value}
                 control={<Radio />}
                 label={gen.label}
+                key={gen.value}
               />
             ))}
           </RadioGroup>
@@ -75,7 +77,9 @@ const Registration: React.FC = () => {
             onChange={(e) => setLanguage(e.target.value as Language)}
           >
             {LANGUAGE.map((lang) => (
-              <MenuItem value={lang.value}>{lang.label}</MenuItem>
+              <MenuItem value={lang.value} key={lang.value}>
+                {lang.label}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

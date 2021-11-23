@@ -58,7 +58,7 @@ export const questionsData: IQuestionDetail[] = [
     correctAnswer: [1, 3],
   },
   {
-    id: 2,
+    id: 3,
     questionType: QuestionType.CorrectIncorrect,
     languages: [
       {

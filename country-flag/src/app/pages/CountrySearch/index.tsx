@@ -4,19 +4,19 @@ import { makeStyles } from '@mui/styles'
 import Button from '@mui/material/Button'
 import { useHistory } from 'react-router-dom'
 import Container from '@mui/material/Container'
-import { CssBaseline } from '@mui/material'
+import { CssBaseline, Theme } from '@mui/material'
 import { Routes } from 'app/utils/enums/routes'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+  fields: {
+    marginBottom: theme.spacing(2),
+    // backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -47,11 +47,15 @@ const CountrySearch: React.FC = () => {
         >
           <TextField
             value={countryNameInput}
+            inputProps={{ 'data-testid': 'country-search-input' }}
+            className={classes.fields}
             required
             fullWidth
+            margin="normal"
             autoFocus
             label="Enter Country"
             variant="outlined"
+            // data-testid="country-search-input"
             onChange={(e) => setCountryNameInput(e.target.value)}
           />
           <Button
@@ -60,6 +64,7 @@ const CountrySearch: React.FC = () => {
             disabled={!countryNameInput}
             type="submit"
             fullWidth
+            data-testid="country-search-button"
             className={classes.submit}
           >
             Submit
