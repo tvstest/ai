@@ -45,6 +45,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
               checked={answers.includes(option.id)}
             />
           }
+          key={option.id}
           label={option.description}
         />
       ))}

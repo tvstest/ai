@@ -34,6 +34,7 @@ const SingleSelect: React.FC<ISingleSelectProps> = ({
             control={<Radio />}
             label={option.description}
             value={option.id}
+            key={option.id}
           />
         ))}
       </RadioGroup>
