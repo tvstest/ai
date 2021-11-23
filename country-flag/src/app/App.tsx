@@ -9,16 +9,16 @@ import appTheme from 'app/configs/theme'
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={appTheme}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider theme={appTheme}>
         <Navbar />
         <Switch>
           <Route exact path={Routes.Home} component={CountrySearch} />
           <Route exact path={Routes.CountriesByName} component={CountryList} />
           <Redirect to={Routes.Home} />
         </Switch>
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   )
 }
 export default App

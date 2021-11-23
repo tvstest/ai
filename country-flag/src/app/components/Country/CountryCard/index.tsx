@@ -77,6 +77,7 @@ const CountryCard: React.FC<CountryCardProps> = ({
           variant="contained"
           color="primary"
           size="small"
+          data-testid="capital-weather-button"
         >
           Capital Weather
         </Button>

@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   fields: {
     marginBottom: theme.spacing(2),
-    // backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -55,7 +54,6 @@ const CountrySearch: React.FC = () => {
             autoFocus
             label="Enter Country"
             variant="outlined"
-            // data-testid="country-search-input"
             onChange={(e) => setCountryNameInput(e.target.value)}
           />
           <Button
