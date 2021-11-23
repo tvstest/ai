@@ -2,8 +2,7 @@ import { Button, Grid, Alert } from '@mui/material'
 import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
 import { questionsData } from '__mock__'
-import StepperComponent, { IStep } from 'components/QuestionStepper'
-import { IQuestionDetail } from 'utilities/interfaces/question-detail'
+import StepperComponent from 'components/QuestionStepper'
 import { useLocation } from 'react-router-dom'
 import QuestionCard from 'components/QuestionCard'
 import { QuestionAttemptType } from 'utilities/enum/question-attempt-type'
@@ -38,13 +37,6 @@ const Quiz: React.FC = () => {
     DEFAULT_QUESTION_INDEX
   )
 
-  const getDefaultSteps = (data: IQuestionDetail[]): IStep[] => {
-    return data.map((question, index) => {
-      return { step: index + 1, status: QuestionAttemptType.NotAnswered }
-    })
-  }
-  const [steps] = useState(getDefaultSteps(questionsData))
-
   const handleBackClick = () => {
     if (activeQuestionIndex !== DEFAULT_QUESTION_INDEX) {
       setActiveQuestionIndex((index) => index - 1)
@@ -67,7 +59,9 @@ const Quiz: React.FC = () => {
 
   const handleAnswer = (userAnswer: string | number[]) => {
     setQuestionAnswers((qa) => {
-      qa.find((q) => q.id === activeQuestionIndex + 1).userAnswer = userAnswer
+      const currentQuestion = qa.find((q) => q.id === activeQuestionIndex + 1)
+      currentQuestion.userAnswer = userAnswer
+      currentQuestion.status = QuestionAttemptType.Answered
       return qa
     })
   }
@@ -86,7 +80,12 @@ const Quiz: React.FC = () => {
       >
         <Grid item xs={12}>
           <br />
-          <StepperComponent steps={steps} onClick={handleQuestionClick} />
+          <StepperComponent
+            steps={questionAnswers.map((q) => {
+              return { step: q.id, status: q.status }
+            })}
+            onClick={handleQuestionClick}
+          />
           <br />
         </Grid>
         <QuestionCard
