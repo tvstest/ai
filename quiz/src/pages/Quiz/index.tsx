@@ -1,21 +1,23 @@
 import { Button, Grid, Alert } from '@mui/material'
 import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
-import { Language } from 'utilities/enum/language'
 import { questionsData } from '__mock__'
-import StepperComponent, { IStep } from 'components/QuestionStepper'
-import { IQuestionDetail } from 'utilities/interfaces/question-detail'
+import StepperComponent from 'components/QuestionStepper'
 import { useLocation } from 'react-router-dom'
 import QuestionCard from 'components/QuestionCard'
 import { QuestionAttemptType } from 'utilities/enum/question-attempt-type'
 import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-detail'
+import { IRegistrationHistoryState } from 'utilities/interfaces/registration-state'
 
 const Quiz: React.FC = () => {
-  const [preferredLanguage] = useState(Language.English)
+  const {
+    state: { name, language },
+  } = useLocation<IRegistrationHistoryState>()
+
   const getLanguageSpecificQuestions = (): IQuestionAnswerDetail[] => {
     return questionsData.map((q) => {
       const { question, answerOptions } = q.languages.find(
-        (l) => l.language === preferredLanguage
+        (l) => l.language === language
       )
       return {
         id: q.id,
@@ -30,18 +32,10 @@ const Quiz: React.FC = () => {
   const [questionAnswers, setQuestionAnswers] = useState<
     IQuestionAnswerDetail[]
   >(getLanguageSpecificQuestions())
+
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(
     DEFAULT_QUESTION_INDEX
   )
-  const { state }: any = useLocation()
-  console.log(state)
-
-  const getDefaultSteps = (data: IQuestionDetail[]): IStep[] => {
-    return data.map((question, index) => {
-      return { step: index + 1, status: QuestionAttemptType.NotAnswered }
-    })
-  }
-  const [steps] = useState(getDefaultSteps(questionsData))
 
   const handleBackClick = () => {
     if (activeQuestionIndex !== DEFAULT_QUESTION_INDEX) {
@@ -65,7 +59,9 @@ const Quiz: React.FC = () => {
 
   const handleAnswer = (userAnswer: string | number[]) => {
     setQuestionAnswers((qa) => {
-      qa.find((q) => q.id === activeQuestionIndex + 1).userAnswer = userAnswer
+      const currentQuestion = qa.find((q) => q.id === activeQuestionIndex + 1)
+      currentQuestion.userAnswer = userAnswer
+      currentQuestion.status = QuestionAttemptType.Answered
       return qa
     })
   }
@@ -73,7 +69,7 @@ const Quiz: React.FC = () => {
   return (
     <>
       <Alert icon={false} severity="success">
-        Hi {state?.name}
+        Hi {name}
       </Alert>
       <Grid
         container
@@ -84,7 +80,12 @@ const Quiz: React.FC = () => {
       >
         <Grid item xs={12}>
           <br />
-          <StepperComponent steps={steps} onClick={handleQuestionClick} />
+          <StepperComponent
+            steps={questionAnswers.map((q) => {
+              return { step: q.id, status: q.status }
+            })}
+            onClick={handleQuestionClick}
+          />
           <br />
         </Grid>
         <QuestionCard

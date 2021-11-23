@@ -14,6 +14,7 @@ import { useHistory } from 'react-router-dom'
 import { Language } from 'utilities/enum/language'
 import { AppRoutings } from 'utilities/enum/app-routings'
 import { GENDER, LANGUAGE } from 'utilities/constants'
+import { IRegistrationHistoryState } from 'utilities/interfaces/registration-state'
 
 const Registration: React.FC = () => {
   const history = useHistory()
@@ -22,7 +23,7 @@ const Registration: React.FC = () => {
   const [language, setLanguage] = useState(Language.English)
 
   const handleClick = () => {
-    const req = {
+    const req: IRegistrationHistoryState = {
       name,
       language,
     }
