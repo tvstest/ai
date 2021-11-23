@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const classes = useStyles()
   return (
     <AppBar position="static">
