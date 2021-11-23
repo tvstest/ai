@@ -1,19 +1,27 @@
 import App from 'app/App'
-import { render } from '../../test-utils'
+import { act, fireEvent, render } from 'test-utils'
 import '@testing-library/jest-dom'
+import CountrySearch from 'app/pages/CountrySearch'
 
 test('App loads with router and mui theme configuration properly', () => {
   render(<App />)
 })
 
-// test('buttons are disabled when data is being fetched', async () => {
-//     const { getByTestId } = render(<CountrySearch />)
-//   const buttonElement = getByTestId('random-button')
+test('submit button is disabled initially', async () => {
+  const { getByTestId } = render(<CountrySearch />)
+  const buttonElement = getByTestId('country-search-button')
+  expect(buttonElement).toBeDisabled()
+})
 
-//     fireEvent.click(buttonElement)
+test('when some input is given submit button is not disabled', async () => {
+  const { getByTestId } = render(<CountrySearch />)
+  const inputElement = getByTestId('country-search-input')
+  fireEvent.change(inputElement, { target: { value: 'india' } })
 
-//     expect(buttonElement).toBeDisabled()
-// })
+  const buttonElement = getByTestId('country-search-button')
+  
+  expect(buttonElement).not.toBeDisabled()
+})
 
 // // it('renders correctly', () => {
 // //     const tree = renderer
