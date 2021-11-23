@@ -21,6 +21,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
     let newAnswer
     if (checked) {
       newAnswer = [...answers, id]
+      newAnswer.sort((a, b) => a - b)
       setAnswer(newAnswer)
     } else {
       newAnswer = [...answers]
@@ -28,6 +29,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
         newAnswer.findIndex((e) => e === id),
         1
       )
+      newAnswer.sort((a, b) => a - b)
       setAnswer(newAnswer)
     }
     handleAnswer(newAnswer)
@@ -43,6 +45,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
               checked={answers.includes(option.id)}
             />
           }
+          key={option.id}
           label={option.description}
         />
       ))}
