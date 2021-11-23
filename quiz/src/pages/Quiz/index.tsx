@@ -3,16 +3,19 @@ import { useState } from 'react'
 import { DEFAULT_QUESTION_INDEX } from 'utilities/constants'
 import { questionsData } from '__mock__'
 import StepperComponent from 'components/QuestionStepper'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import QuestionCard from 'components/QuestionCard'
 import { QuestionAttemptType } from 'utilities/enum/question-attempt-type'
 import { IQuestionAnswerDetail } from 'utilities/interfaces/question-answer-detail'
 import { IRegistrationHistoryState } from 'utilities/interfaces/registration-state'
+import { AppRoutings } from 'utilities/enum/app-routings'
+import { IReportCardState } from 'utilities/interfaces/report-card-state'
 
 const Quiz: React.FC = () => {
   const {
     state: { name, language },
   } = useLocation<IRegistrationHistoryState>()
+  const history = useHistory()
 
   const getLanguageSpecificQuestions = (): IQuestionAnswerDetail[] => {
     return questionsData.map((q) => {
@@ -54,7 +57,13 @@ const Quiz: React.FC = () => {
   }
 
   const handleSubmit = () => {
-    alert('thanks for submitting quiz')
+    const req: IReportCardState = {
+      questionAnswers,
+    }
+    history.push({
+      pathname: AppRoutings.Report,
+      state: req,
+    })
   }
 
   const handleAnswer = (userAnswer: string | number[]) => {
@@ -62,7 +71,7 @@ const Quiz: React.FC = () => {
       const currentQuestion = qa.find((q) => q.id === activeQuestionIndex + 1)
       currentQuestion.userAnswer = userAnswer
       currentQuestion.status = QuestionAttemptType.Answered
-      return qa
+      return [...qa]
     })
   }
 
