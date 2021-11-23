@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render, screen } from 'test-utils'
+import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 import { setupIntersectionObserverMock } from 'app/utility/testUtilities'
 import App from '../App'

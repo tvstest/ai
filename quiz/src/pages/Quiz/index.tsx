@@ -71,7 +71,7 @@ const Quiz: React.FC = () => {
       const currentQuestion = qa.find((q) => q.id === activeQuestionIndex + 1)
       currentQuestion.userAnswer = userAnswer
       currentQuestion.status = QuestionAttemptType.Answered
-      return qa
+      return [...qa]
     })
   }
 

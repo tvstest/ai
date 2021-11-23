@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+  fields: {
+    marginBottom: theme.spacing(2),
+    // backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -47,11 +47,15 @@ const CountrySearch: React.FC = () => {
         >
           <TextField
             value={countryNameInput}
+            inputProps={{ 'data-testid': 'country-search-input' }}
+            className={classes.fields}
             required
             fullWidth
+            margin="normal"
             autoFocus
             label="Enter Country"
             variant="outlined"
+            // data-testid="country-search-input"
             onChange={(e) => setCountryNameInput(e.target.value)}
           />
           <Button
@@ -60,6 +64,7 @@ const CountrySearch: React.FC = () => {
             disabled={!countryNameInput}
             type="submit"
             fullWidth
+            data-testid="country-search-button"
             className={classes.submit}
           >
             Submit
