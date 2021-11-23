@@ -35,7 +35,9 @@ const ReportCard: React.FC = () => {
         correctAnswer.length === userAnswer.length
       )
     }
-    return correctAnswer === userAnswer
+    return (
+      String(correctAnswer).toLowerCase() === String(userAnswer).toLowerCase()
+    )
   }
 
   return (
