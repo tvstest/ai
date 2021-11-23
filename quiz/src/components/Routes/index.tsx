@@ -25,6 +25,11 @@ const routes: IRoute[] = [
     component: lazy(() => import('pages/Quiz')),
     isProtectedRoute: false,
   },
+  {
+    path: AppRoutings.Report,
+    component: lazy(() => import('pages/ReportCard')),
+    isProtectedRoute: false,
+  },
 ]
 
 const Routes: React.FC = () => {
