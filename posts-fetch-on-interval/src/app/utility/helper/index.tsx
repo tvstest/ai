@@ -13,3 +13,6 @@ export const hideLoader = (): void => {
     loaderDiv.classList.add('loaderHide')
   }
 }
+
+export const sleep = (m: number): Promise<NodeJS.Timeout> =>
+  new Promise((r) => setTimeout(r, m))
