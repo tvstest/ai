@@ -1,18 +1,20 @@
-import { render, fireEvent, waitFor } from 'test-utils'
-import '@testing-library/jest-dom'
-import App from 'App'
-import Home from 'app/pages/Home'
+import { fireEvent, render, waitFor, screen } from '@testing-library/react'
 import AsteroidForm from 'app/components/Asteroid/AsteroidForm'
 import { act } from 'react-dom/test-utils'
 import service from 'app/services/asteroid-services'
+import '@testing-library/jest-dom'
+import AsteroidContextWrapper from 'app/context/AsteroidContext'
 
-test('App loads with router and mui theme configuration properly', () => {
-  render(<App />)
+beforeEach(() => {
+  render(
+    <AsteroidContextWrapper>
+      <AsteroidForm />
+    </AsteroidContextWrapper>
+  )
 })
 
 test('Form validations are triggered properly', async () => {
-  const { getByTestId, getByText } = render(<AsteroidForm />)
-  const inputElement = getByTestId('asteroidId')
+  const inputElement = screen.getByTestId('asteroidId')
 
   await act(async () => {
     fireEvent.change(inputElement, {
@@ -21,20 +23,21 @@ test('Form validations are triggered properly', async () => {
   })
 
   await act(async () => {
-    fireEvent.click(getByTestId('form-submit'))
+    fireEvent.click(screen.getByTestId('form-submit'))
   })
 
   await waitFor(async () => {
-    expect(getByText('please enter 7 digit asteroid id')).toBeInTheDocument()
+    expect(
+      screen.getByText('please enter 7 digit asteroid id')
+    ).toBeInTheDocument()
   })
 })
 
 test('Random asteroid get api is being called (1 time)', async () => {
-  const { getByTestId } = render(<AsteroidForm />)
   const mockFn = jest.spyOn(service, 'getRandomAsteroidId')
 
   await act(async () => {
-    fireEvent.click(getByTestId('random-button'))
+    fireEvent.click(screen.getByTestId('random-button'))
   })
 
   await waitFor(async () => {
@@ -44,8 +47,7 @@ test('Random asteroid get api is being called (1 time)', async () => {
 
 test('specific asteroid get api is called', async () => {
   const mockFn = jest.spyOn(service, 'getAsteroidById')
-  const { getByTestId } = render(<Home />)
-  const inputElement = getByTestId('asteroidId')
+  const inputElement = screen.getByTestId('asteroidId')
   await act(async () => {
     fireEvent.change(inputElement, {
       target: { value: '2001980' },
@@ -53,7 +55,7 @@ test('specific asteroid get api is called', async () => {
   })
 
   await act(async () => {
-    fireEvent.click(getByTestId('form-submit'))
+    fireEvent.click(screen.getByTestId('form-submit'))
   })
 
   await waitFor(async () => {
@@ -62,15 +64,7 @@ test('specific asteroid get api is called', async () => {
 })
 
 test('buttons are disabled when data is being fetched', async () => {
-  const { getByTestId } = render(<AsteroidForm />)
-  const buttonElement = getByTestId('random-button')
-
+  const buttonElement = screen.getByTestId('random-button')
   fireEvent.click(buttonElement)
-
   expect(buttonElement).toBeDisabled()
-})
-
-test('matches the form snapshot', async () => {
-  const formContainer = render(<AsteroidForm />)
-  expect(formContainer).toMatchSnapshot()
 })
