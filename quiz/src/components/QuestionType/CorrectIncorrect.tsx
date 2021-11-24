@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { Radio } from '@mui/material'
@@ -14,12 +14,7 @@ const CorrectInCorrect: React.FC<ICorrectIncorrectProps> = ({
   handleAnswer,
   questionsData,
 }) => {
-  const [checked, setChecked] = useState(
-    (questionsData.userAnswer as Array<number>) ?? []
-  )
-
   const singleSelectHandler = (value: string) => {
-    setChecked([Number(value)])
     handleAnswer([Number(value)])
   }
 
@@ -29,7 +24,11 @@ const CorrectInCorrect: React.FC<ICorrectIncorrectProps> = ({
         aria-label="correct-incorrect-answer"
         name="answer-buttons-group"
         onChange={(e) => singleSelectHandler(e.target.value)}
-        value={checked && checked.length > 0 ? checked[0] : null}
+        defaultValue={
+          (questionsData.userAnswer as Array<number>)
+            ? questionsData.userAnswer[0]
+            : 0
+        }
       >
         {questionsData.answerOptions.map((option) => (
           <FormControlLabel

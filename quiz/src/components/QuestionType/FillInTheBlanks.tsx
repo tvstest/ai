@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TextField from '@mui/material/TextField'
 
 interface IFillInTheBlankProps {
@@ -10,10 +10,7 @@ const FillInTheBlank: React.FC<IFillInTheBlankProps> = ({
   handleAnswer,
   userAnswer,
 }) => {
-  const [fillInBlank, setFillInBlank] = useState(userAnswer ?? '')
-
   const onFillInBlankHandler = (value: string) => {
-    setFillInBlank(value)
     handleAnswer(value)
   }
 
@@ -21,7 +18,7 @@ const FillInTheBlank: React.FC<IFillInTheBlankProps> = ({
     <TextField
       required
       id="outlined-required"
-      value={fillInBlank}
+      defaultValue={userAnswer}
       onChange={(e) => onFillInBlankHandler(e.target.value)}
       sx={{ width: 220, mt: 2 }}
     />
