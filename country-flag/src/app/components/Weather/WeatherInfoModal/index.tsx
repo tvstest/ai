@@ -58,7 +58,7 @@ const WeatherInfoModal: React.FC<IWeatherInfoModalProps> = ({
       maxWidth="sm"
     >
       <DialogTitle id="customized-dialog-title">
-        <Typography variant="h6">Weather Information</Typography>
+        <Typography>Weather Information</Typography>
       </DialogTitle>
       <DialogContent dividers className={classes.centerContent}>
         <Typography variant="h4">
