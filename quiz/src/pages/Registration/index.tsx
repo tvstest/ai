@@ -41,6 +41,7 @@ const Registration: React.FC = () => {
           required
           id="outlined-required"
           label="Name"
+          inputProps={{ 'data-testid': 'nameField' }}
           value={name}
           onChange={(e) => setName(e.target.value)}
           sx={{ width: 220 }}
@@ -88,6 +89,7 @@ const Registration: React.FC = () => {
         onClick={handleClick}
         variant="contained"
         sx={{ mt: 3 }}
+        data-testid="submitForm"
         disabled={!name || !gender || language < 0}
       >
         Register

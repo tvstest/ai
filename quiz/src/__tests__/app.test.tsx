@@ -1,0 +1,6 @@
+import { render } from '@testing-library/react'
+import App from 'App'
+
+test('App is rendered properly with mui and router configuration', () => {
+  render(<App />)
+})
