@@ -11,13 +11,11 @@ import { ICountry } from 'app/utils/interfaces/country'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import CountryCard from 'app/components/Country/CountryCard'
-import {
-  ERROR_FETCHING_COUNTRIES,
-  ERROR_FETCHING_WEATHER,
-} from 'app/utils/constants'
+import { ERROR_FETCHING_COUNTRIES } from 'app/utils/constants'
 import WeatherInfoModal from 'app/components/Weather/WeatherInfoModal'
 import weatherService from 'app/services/weather-service'
 import { ICapitalWeatherInfo } from 'app/utils/interfaces/weather'
+import NetworkCallErrorDialog from 'app/components/NetworkCallErrorDialog'
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardGrid: {
@@ -34,6 +32,7 @@ const CountryList: React.FC = () => {
   const [countries, setCountries] = useState<ICountry[]>([])
   const [capitalWeatherInfo, setCapitalWeatherInfo] =
     useState<ICapitalWeatherInfo>({} as ICapitalWeatherInfo)
+  const [showErrorDialog, setShowErrorDialog] = useState(false)
 
   const handleGetCapitalWeatherInfo = async (currentCountry: ICountry) => {
     try {
@@ -45,11 +44,13 @@ const CountryList: React.FC = () => {
         setShowWeatherInfoModal(true)
       }
     } catch (e) {
-      console.log(ERROR_FETCHING_WEATHER)
+      setShowErrorDialog(true)
     }
   }
 
   const handleClose = () => setShowWeatherInfoModal(false)
+
+  const handleCloseErrorDialog = () => setShowErrorDialog(false)
 
   const getCountries = async () => {
     try {
@@ -94,6 +95,10 @@ const CountryList: React.FC = () => {
           open={showWeatherInfoModal}
           handleClose={handleClose}
           capitalWeatherInfo={capitalWeatherInfo}
+        />
+        <NetworkCallErrorDialog
+          open={showErrorDialog}
+          handleClose={handleCloseErrorDialog}
         />
       </Grid>
     </Container>
