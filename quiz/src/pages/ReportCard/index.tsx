@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 import { Chip, Divider, Grid } from '@mui/material'
 import React, { useMemo } from 'react'
@@ -128,7 +130,7 @@ const ReportCard: React.FC = () => {
           label={renderCustomizedLabel}
         >
           {datas.map((entry, index) => (
-            <Cell fill={COLORS[index % COLORS.length]} />
+            <Cell key={index} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
       </PieChart>
@@ -156,34 +158,34 @@ const ReportCard: React.FC = () => {
       >
         {questionAnswers.map((item, questionIndex) => {
           return (
-            <>
-              <Grid item xs={12} key={item.id} mt={5}>
-                <b>Question {questionIndex + 1}) </b>
-                {item.question}
-                <br />
-                {item.answerOptions.map((option, index) => (
-                  <p key={option.id}>{`${index + 1}) ${option.description}`}</p>
-                ))}
-                <p>
-                  <b>Correct Answer:</b>{' '}
-                  {getAnswerList(item.correctAnswer, item.answerOptions)}
-                </p>
-                <p>
-                  <b>Submitted Answer:</b>{' '}
-                  {getAnswerList(item.userAnswer, item.answerOptions)}
-                  <Chip
-                    label={
-                      answerIdentify(item.correctAnswer, item.userAnswer).label
-                    }
-                    style={{ marginLeft: 10 }}
-                    color={
-                      answerIdentify(item.correctAnswer, item.userAnswer).color
-                    }
-                  />
-                </p>
-              </Grid>
+            <Grid data-testid="grid-item" item xs={12} key={item.id} mt={4}>
+              <b>Question {questionIndex + 1}) </b>
+              {item.question}
+              <br />
+              {item.answerOptions.map((option, index) => (
+                <p key={option.id}>{`${index + 1}) ${option.description}`}</p>
+              ))}
+              <div>
+                <b>Correct Answer:</b>{' '}
+                {getAnswerList(item.correctAnswer, item.answerOptions)}
+              </div>
+              <br />
+              <div>
+                <b>Submitted Answer:</b>{' '}
+                {getAnswerList(item.userAnswer, item.answerOptions)}
+                <Chip
+                  label={
+                    answerIdentify(item.correctAnswer, item.userAnswer).label
+                  }
+                  style={{ marginLeft: 10 }}
+                  color={
+                    answerIdentify(item.correctAnswer, item.userAnswer).color
+                  }
+                />
+              </div>
+              <br />
               <Divider light />
-            </>
+            </Grid>
           )
         })}
       </Grid>

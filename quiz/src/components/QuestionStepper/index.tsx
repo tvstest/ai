@@ -25,7 +25,6 @@ const StepperComponent: React.FC<IStepperComponentProps> = ({
   steps,
   onClick,
 }) => {
-  debugger
   const classes = useStyles()
   return (
     <Stepper className={classes.root} alternativeLabel>

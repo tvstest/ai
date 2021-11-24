@@ -41,12 +41,6 @@ const Routes: React.FC = () => {
           .map(({ path, component }, key) => (
             <Route exact path={path} component={component} key={key} />
           ))}
-
-        {/* <Redirect
-          to={{
-            pathname: AppRoutings.Quiz,
-          }}
-        /> */}
       </Layout>
     </Switch>
   )

@@ -99,3 +99,64 @@ export const questionsData: IQuestionDetail[] = [
     correctAnswer: 'EAST',
   },
 ]
+
+export const state = {
+  questionAnswers: [
+    {
+      id: 1,
+      questionType: 0,
+      correctAnswer: [1],
+      status: 0,
+      question: '1 + 1 = ?',
+      answerOptions: [
+        { description: '2', id: 1 },
+        { description: '3', id: 2 },
+        { description: '4', id: 3 },
+        { description: '5', id: 4 },
+      ],
+      userAnswer: [1],
+    },
+    {
+      id: 2,
+      questionType: 4,
+      correctAnswer: [1, 3],
+      status: 0,
+      question: 'Choose country which starts from I.',
+      answerOptions: [
+        { description: 'India', id: 1 },
+        { description: 'Pakistan', id: 2 },
+        { description: 'Indonesia', id: 3 },
+        { description: 'Srilanka', id: 4 },
+      ],
+      userAnswer: [1, 3],
+    },
+    {
+      id: 3,
+      questionType: 1,
+      correctAnswer: '[1]',
+      status: 0,
+      question: 'The Sun rises in the East. Is this true or false? ',
+      answerOptions: [
+        {
+          id: 1,
+          description: 'True',
+        },
+        {
+          id: 2,
+          description: 'False',
+        },
+      ],
+      userAnswer: [1],
+    },
+    {
+      id: 4,
+      questionType: 2,
+      correctAnswer: 'EAST',
+      status: 0,
+      question: 'Where Does the Sun Rise?',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      answerOptions: [] as any,
+      userAnswer: 'east',
+    },
+  ],
+}
