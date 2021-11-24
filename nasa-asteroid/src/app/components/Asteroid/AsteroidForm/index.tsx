@@ -70,21 +70,26 @@ const AsteroidForm: React.FC<{ handler?: (payload: IAsteroidForm) => void }> =
     const getRandomAsteroid = useCallback(async () => {
       dispatch(loadRandomAsteroidId())
 
-      const {
-        // eslint-disable-next-line camelcase
-        data: { near_earth_objects },
-      } = await asteroidServices.getRandomAsteroidId()
-      const randomAsteroidData = _.sample(near_earth_objects)
+      try {
+        const {
+          // eslint-disable-next-line camelcase
+          data: { near_earth_objects },
+        } = await asteroidServices.getRandomAsteroidId()
+        const randomAsteroidData = _.sample(near_earth_objects)
 
-      dispatch(setAsteroidId(randomAsteroidData?.id || ''))
+        dispatch(setAsteroidId(randomAsteroidData?.id || ''))
 
-      dispatch(loadRandomAsteroidData())
+        dispatch(loadRandomAsteroidData())
 
-      const { data } = await asteroidServices.getAsteroidById(
-        randomAsteroidData?.id || ''
-      )
+        const { data } = await asteroidServices.getAsteroidById(
+          randomAsteroidData?.id || ''
+        )
 
-      dispatch(setAsteroidData(data))
+        dispatch(setAsteroidData(data))
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+      }
     }, [dispatch])
 
     return (
