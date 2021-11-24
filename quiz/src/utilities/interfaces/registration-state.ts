@@ -1,5 +1,5 @@
 import { Language } from 'utilities/enum/language'
-import { IQuestionAnswerDetail } from './question-answer-detail';
+import { IQuestionAnswerDetail } from './question-answer-detail'
 
 export interface IRegistrationHistoryState {
   name: string
