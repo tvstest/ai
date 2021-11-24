@@ -1,3 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the app snapshot 1`] = `<App />`;
+exports[`matches the app snapshot 1`] = `
+Array [
+  <header
+    className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-hip9hq-MuiPaper-root-MuiAppBar-root"
+  >
+    <div
+      className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular makeStyles-toolbar-1 css-1t29gy6-MuiToolbar-root"
+    >
+      <h5
+        className="MuiTypography-root MuiTypography-h5 makeStyles-h5-2 css-n4yuy5-MuiTypography-root"
+      >
+        Country and Weather Info
+      </h5>
+    </div>
+  </header>,
+  <main
+    className="MuiContainer-root MuiContainer-maxWidthXs css-nzinn5-MuiContainer-root"
+  >
+    <div
+      className="makeStyles-paper-3"
+    >
+      <form
+        autoComplete="off"
+        className="makeStyles-form-5"
+        noValidate={true}
+        onSubmit={[Function]}
+      >
+        <div
+          className="MuiFormControl-root MuiFormControl-marginNormal MuiFormControl-fullWidth MuiTextField-root makeStyles-fields-4 css-17vbkzs-MuiFormControl-root-MuiTextField-root"
+        >
+          <label
+            className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary Mui-required css-1pw3wan-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink={false}
+          >
+            Enter Country
+            <span
+              aria-hidden={true}
+              className="MuiInputLabel-asterisk MuiFormLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
+            >
+               
+              *
+            </span>
+          </label>
+          <div
+            className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-sn8fib-MuiInputBase-root-MuiOutlinedInput-root"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={true}
+              className="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+              data-testid="country-search-input"
+              disabled={false}
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={true}
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden={true}
+              className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="css-173wfxe"
+              >
+                <span>
+                  Enter Country
+                   *
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <button
+          className="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root Mui-disabled makeStyles-submit-6 css-1rcmftp-MuiButtonBase-root-MuiButton-root"
+          data-testid="country-search-button"
+          disabled={true}
+          onBlur={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </main>,
+]
+`;

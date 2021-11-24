@@ -1,13 +1,15 @@
 import App from 'app/App'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { countryService } from 'app/services/country-service'
+import renderer from 'react-test-renderer'
 
 beforeEach(() => {
   render(<App />)
 })
 
-test('matches the app snapshot', async () => {
-  expect(<App />).toMatchSnapshot()
+test('matches the app snapshot', () => {
+  const domTree = renderer.create(<App />).toJSON()
+  expect(domTree).toMatchSnapshot()
 })
 
 test('get India country info and its capital weather info for Delhi', () => {
@@ -31,8 +33,11 @@ test('specific country is found via api call', async () => {
 
   expect(countryServiceMock).toHaveBeenLastCalledWith('india')
 
-  await waitFor(async () => {
-    const contentText = screen.getByText('India')
-    expect(contentText).toBeInTheDocument()
-  }, { timeout: 5000 })
+  await waitFor(
+    async () => {
+      const contentText = screen.getByText('India')
+      expect(contentText).toBeInTheDocument()
+    },
+    { timeout: 5000 }
+  )
 })
