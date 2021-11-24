@@ -1,5 +1,6 @@
 import App from 'app/App'
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { countryService } from 'app/services/country-service'
 
 beforeEach(() => {
   render(<App />)
@@ -15,6 +16,7 @@ test('get India country info and its capital weather info for Delhi', () => {
 })
 
 test('specific country is found via api call', async () => {
+  const countryServiceMock = jest.spyOn(countryService, 'getByName')
   const inputElement = screen.getByTestId('country-search-input')
 
   await act(async () => {
@@ -27,19 +29,10 @@ test('specific country is found via api call', async () => {
     fireEvent.click(buttonElement)
   })
 
+  expect(countryServiceMock).toHaveBeenLastCalledWith('india')
+
   await waitFor(async () => {
     const contentText = screen.getByText('India')
     expect(contentText).toBeInTheDocument()
-  })
-
-  // await act(async () => {
-  //   const contentTextBtn = screen.getByText('India').closest('[data-testid="capital-weather-button"]')[0]
-  //   const buttonElement = screen.getByTestId('capital-weather-button')
-  //   fireEvent.click(contentTextBtn)
-  // })
-
-  // await waitFor(async () => {
-  //   const contentText = screen.getByText(/Delhi/i)
-  //   expect(contentText).toBeInTheDocument()
-  // })
+  }, { timeout: 5000 })
 })
