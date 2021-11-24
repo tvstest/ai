@@ -19,7 +19,7 @@ import { IRegistrationHistoryState } from 'utilities/interfaces/registration-sta
 const Registration: React.FC = () => {
   const history = useHistory()
   const [name, setName] = useState('')
-  const [gender, setGender] = useState(null)
+  const [gender, setGender] = useState(GENDER[0].value)
   const [language, setLanguage] = useState(Language.English)
 
   const handleClick = () => {
@@ -84,7 +84,12 @@ const Registration: React.FC = () => {
           </Select>
         </FormControl>
       </div>
-      <Button onClick={handleClick} variant="contained" sx={{ mt: 3 }}>
+      <Button
+        onClick={handleClick}
+        variant="contained"
+        sx={{ mt: 3 }}
+        disabled={!name || !gender || language < 0}
+      >
         Register
       </Button>
     </Box>
