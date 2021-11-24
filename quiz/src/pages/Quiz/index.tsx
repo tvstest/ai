@@ -103,17 +103,17 @@ const Quiz: React.FC = () => {
         />
         <Grid item xs={12}>
           {activeQuestionIndex !== DEFAULT_QUESTION_INDEX && (
-            <Button color="inherit" onClick={handleBackClick} sx={{ mr: 1 }}>
+            <Button variant="outlined" onClick={handleBackClick} sx={{ mr: 1 }}>
               Back
             </Button>
           )}
           {activeQuestionIndex !== questionAnswers.length - 1 && (
-            <Button color="inherit" onClick={handleNextClick} sx={{ mr: 1 }}>
+            <Button variant="outlined" onClick={handleNextClick} sx={{ mr: 1 }}>
               Next
             </Button>
           )}
           {activeQuestionIndex === questionAnswers.length - 1 && (
-            <Button color="inherit" onClick={handleSubmit} sx={{ mr: 1 }}>
+            <Button variant="outlined" onClick={handleSubmit} sx={{ mr: 1 }}>
               Submit
             </Button>
           )}
