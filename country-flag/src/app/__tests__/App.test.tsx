@@ -1,6 +1,5 @@
 import App from 'app/App'
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { countryService } from 'app/services/country-service'
+import { render, screen } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 
 beforeEach(() => {
