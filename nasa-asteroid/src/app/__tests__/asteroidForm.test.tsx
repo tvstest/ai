@@ -62,9 +62,3 @@ test('specific asteroid get api is called', async () => {
     expect(mockFn).toHaveBeenLastCalledWith('2001980')
   })
 })
-
-test('buttons are disabled when data is being fetched', async () => {
-  const buttonElement = screen.getByTestId('random-button')
-  fireEvent.click(buttonElement)
-  expect(buttonElement).toBeDisabled()
-})
