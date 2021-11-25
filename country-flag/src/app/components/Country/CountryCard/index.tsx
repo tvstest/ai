@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardMedia from '@mui/material/CardMedia'
-import { ICountry } from 'app/utils/interfaces/country'
+import { ICountryResponse } from 'app/utils/interfaces/country'
 import Divider from '@mui/material/Divider'
 
 const useStyles = makeStyles({
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 })
 
 interface CountryCardProps {
-  country: ICountry
+  country: ICountryResponse
   onClickWeatherCapitalButton: React.MouseEventHandler<HTMLButtonElement>
 }
 
@@ -39,19 +39,20 @@ const CountryCard: React.FC<CountryCardProps> = ({
   country,
   onClickWeatherCapitalButton,
 }: CountryCardProps) => {
+  debugger
   const classes = useStyles()
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={country.flag}
-          title={country.name}
+          image={country.flags.png}
+          title={country.name.common}
         />
         <Divider />
         <CardContent className={classes.customCard}>
           <Typography gutterBottom variant="h6">
-            {country.name}
+            {country.name.common}
             <Typography variant="subtitle1" component="p" color="textSecondary">
               {country.capital}
             </Typography>

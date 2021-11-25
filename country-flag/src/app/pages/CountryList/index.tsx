@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-array-index-key */
 import {
   CircularProgress,
   Container,
@@ -7,7 +9,7 @@ import {
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { countryService } from 'app/services/country-service'
-import { ICountry } from 'app/utils/interfaces/country'
+import { ICountryResponse } from 'app/utils/interfaces/country'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import CountryCard from 'app/components/Country/CountryCard'
@@ -29,15 +31,17 @@ const CountryList: React.FC = () => {
   const { countryName } = useParams<{ countryName: string }>()
   const [loading, setLoading] = useState(true)
   const [showWeatherInfoModal, setShowWeatherInfoModal] = useState(false)
-  const [countries, setCountries] = useState<ICountry[]>([])
+  const [countries, setCountries] = useState<ICountryResponse[]>([])
   const [capitalWeatherInfo, setCapitalWeatherInfo] =
     useState<ICapitalWeatherInfo>({} as ICapitalWeatherInfo)
   const [showErrorDialog, setShowErrorDialog] = useState(false)
 
-  const handleGetCapitalWeatherInfo = async (currentCountry: ICountry) => {
+  const handleGetCapitalWeatherInfo = async (
+    currentCountry: ICountryResponse
+  ) => {
     try {
       const result = await weatherService.getWeatherByCity(
-        currentCountry.capital
+        currentCountry.capital[0]
       )
       if (result.data) {
         setCapitalWeatherInfo(result.data)
@@ -55,6 +59,7 @@ const CountryList: React.FC = () => {
   const getCountries = async () => {
     try {
       const result = await countryService.getByName(countryName)
+      debugger
       if (result.data) {
         setCountries([...result.data])
       }
@@ -79,9 +84,9 @@ const CountryList: React.FC = () => {
             {ERROR_FETCHING_COUNTRIES}
           </Typography>
         )}
-        {countries.map((country: ICountry) => {
+        {countries.map((country: ICountryResponse, index) => {
           return (
-            <Grid item key={country.alpha2Code} xs={12} sm={6} md={4}>
+            <Grid item key={index} xs={12} sm={6} md={4}>
               <CountryCard
                 country={country}
                 onClickWeatherCapitalButton={() =>
